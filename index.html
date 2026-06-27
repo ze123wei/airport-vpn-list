@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="机场 VPN 平台整合目录：收费、试用、免费与客户端服务的公开信息、入口维护和状态记录。" name="description"/>
+<title>机场 VPN 平台目录｜待整理条目</title>
+<style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --line: #e6eaf0;
+      --navy: #12284c;
+      --blue: #275ea8;
+      --cyan: #e8f4ff;
+      --green: #16794a;
+      --green-bg: #e9f8ef;
+      --amber: #9a6700;
+      --amber-bg: #fff6dd;
+      --shadow: 0 18px 45px rgba(17, 35, 63, .08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% -10%, rgba(117, 184, 255, .22), transparent 28rem),
+        linear-gradient(180deg, #fbfcff 0%, var(--bg) 55%, #f2f5fa 100%);
+    }
+
+    a { color: inherit; }
+    .wrap { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+
+    header {
+      padding: 26px 0 58px;
+      background: linear-gradient(120deg, #0c1d39, #143e79 62%, #1f61aa);
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      right: -220px;
+      top: -290px;
+      box-shadow: 0 0 0 70px rgba(255,255,255,.03), 0 0 0 140px rgba(255,255,255,.02);
+    }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center; gap: 18px;
+      position: relative; z-index: 1;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 700; letter-spacing: .02em;
+    }
+    .brand-mark {
+      width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.5); border-radius: 9px;
+      display: grid; place-items: center; background: rgba(255,255,255,.08);
+    }
+    .topbar nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px; }
+    .topbar nav a { text-decoration: none; color: rgba(255,255,255,.82); }
+    .topbar nav a:hover { color: #fff; }
+
+    .hero { padding-top: 56px; position: relative; z-index: 1; }
+    .eyebrow {
+      margin: 0 0 12px; color: #a7cdfd; font-size: 13px; letter-spacing: .12em;
+      text-transform: uppercase; font-weight: 800;
+    }
+    h1 { margin: 0; max-width: 860px; font-size: clamp(34px, 6vw, 60px); line-height: 1.08; letter-spacing: -.045em; }
+    .hero p {
+      max-width: 760px; margin: 20px 0 0; color: rgba(255,255,255,.8);
+      font-size: clamp(15px, 2vw, 18px); line-height: 1.75;
+    }
+    .hero-meta {
+      margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .meta-pill {
+      border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.08);
+      border-radius: 999px; padding: 8px 12px; font-size: 13px; color: #eff7ff;
+    }
+
+    main { padding: 0 0 64px; }
+    .summary-grid {
+      margin-top: -30px; position: relative; z-index: 2;
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+    }
+    .stat {
+      background: var(--surface); border: 1px solid rgba(226,231,239,.92); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 20px;
+    }
+    .stat .num { font-size: 30px; font-weight: 800; letter-spacing: -.04em; color: var(--navy); }
+    .stat .label { margin-top: 6px; font-size: 13px; color: var(--muted); }
+
+    .notice {
+      margin-top: 22px; border: 1px solid #f1d491; border-radius: 14px; background: var(--amber-bg);
+      color: #704f00; padding: 15px 17px; font-size: 14px; line-height: 1.65;
+    }
+    .notice strong { color: #5e4100; }
+
+    .section { margin-top: 46px; }
+    .section-heading { display: flex; justify-content: space-between; gap: 20px; align-items: flex-end; margin-bottom: 16px; }
+    h2 { margin: 0; font-size: clamp(24px, 3vw, 32px); letter-spacing: -.035em; color: #102444; }
+    .section-copy { max-width: 630px; color: var(--muted); font-size: 14px; line-height: 1.7; margin: 8px 0 0; }
+    .updated { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+    .rules {
+      display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px;
+    }
+    .rule-card {
+      background: var(--surface); border: 1px solid var(--line); padding: 20px; border-radius: 16px;
+    }
+    .rule-card .icon {
+      width: 32px; height: 32px; display: grid; place-items: center; margin-bottom: 12px;
+      border-radius: 9px; background: var(--cyan); color: var(--blue); font-weight: 800;
+    }
+    .rule-card h3 { margin: 0; font-size: 15px; }
+    .rule-card p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+    .panel {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .controls {
+      padding: 18px; border-bottom: 1px solid var(--line);
+      display: flex; justify-content: space-between; gap: 15px; align-items: center; flex-wrap: wrap;
+    }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter {
+      appearance: none; border: 1px solid #d6dde8; background: #fff; color: #40516a; border-radius: 999px;
+      padding: 8px 12px; font-size: 13px; cursor: pointer; transition: .18s ease;
+    }
+    .filter:hover { border-color: #a7c2e5; background: #f8fbff; }
+    .filter.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .search {
+      width: min(300px, 100%); position: relative;
+    }
+    .search input {
+      width: 100%; border: 1px solid #d6dde8; padding: 10px 12px 10px 34px; border-radius: 10px;
+      color: var(--text); font-size: 13px; outline: none;
+    }
+    .search input:focus { border-color: #5a91d3; box-shadow: 0 0 0 3px rgba(53,116,190,.12); }
+    .search::before { content: "⌕"; position: absolute; left: 11px; top: 5px; font-size: 21px; color: #7b8da7; }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; min-width: 1020px; border-collapse: collapse; }
+    th {
+      text-align: left; font-size: 12px; font-weight: 700; color: #52647e; background: #f8fafc;
+      border-bottom: 1px solid var(--line); padding: 13px 16px; white-space: nowrap;
+    }
+    td {
+      padding: 14px 16px; font-size: 13px; border-bottom: 1px solid #edf0f4; vertical-align: top;
+      color: #34435a; line-height: 1.45;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fbfdff; }
+    .name { font-weight: 750; color: #15294b; }
+    .link {
+      display: inline-flex; align-items: center; gap: 5px; color: #145da9; text-decoration: none;
+      max-width: 220px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    }
+    .link:hover { text-decoration: underline; }
+    .muted { color: #8a97a9; }
+    .badge {
+      display: inline-flex; align-items: center; white-space: nowrap; border-radius: 999px; padding: 5px 8px;
+      font-size: 11px; font-weight: 700;
+    }
+    .badge.cat-paid { background: #eaf3ff; color: #16589e; }
+    .badge.cat-trial { background: #f4ecff; color: #6d37a3; }
+    .badge.cat-free { background: #e9f8ef; color: #16794a; }
+    .badge.vpn { background: #fff4df; color: #9b6300; }
+    .badge.direct { background: #eef7f0; color: #287749; }
+    .badge.pending { background: #f2f4f7; color: #596a82; }
+    .empty { padding: 44px 20px; text-align: center; color: var(--muted); }
+
+    .foot-grid {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 14px;
+    }
+    .foot-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+    }
+    .foot-card h3 { margin: 0; font-size: 16px; }
+    .foot-card p, .foot-card li { color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .foot-card ul { margin: 10px 0 0; padding-left: 18px; }
+
+    footer { margin-top: 48px; padding: 24px 0 8px; color: #7f8ca0; font-size: 12px; }
+    .footer-line { border-top: 1px solid #e2e8f0; padding-top: 18px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+
+    .knowledge-layout {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .concept-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 21px;
+    }
+    .concept-kicker {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #edf5ff;
+      color: #175da7;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    .concept-card h3 {
+      margin: 0;
+      color: #14294c;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+    .concept-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .definition-note {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-left: 4px solid #2d75c4;
+      border-radius: 0 14px 14px 0;
+      background: #f0f7ff;
+      color: #38536f;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .knowledge-block {
+      margin-top: 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+    .knowledge-block h3 {
+      margin: 0;
+      color: #14294c;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+    .knowledge-block > p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .protocol-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .protocol-card {
+      border: 1px solid #e1e8f1;
+      border-radius: 14px;
+      padding: 16px;
+      background: linear-gradient(180deg, #fbfdff, #f6f9fd);
+    }
+    .protocol-card h4 {
+      margin: 0;
+      font-size: 15px;
+      color: #17365d;
+    }
+    .protocol-card p {
+      margin: 8px 0 0;
+      color: #62738a;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .term-list {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .term-item {
+      border: 1px solid #e7ecf2;
+      border-radius: 12px;
+      padding: 14px 15px;
+      background: #fff;
+    }
+    .term-item h4 {
+      margin: 0;
+      font-size: 14px;
+      color: #233b61;
+    }
+    .term-item p {
+      margin: 7px 0 0;
+      font-size: 13px;
+      color: #66778e;
+      line-height: 1.6;
+    }
+    .faq-list {
+      margin-top: 15px;
+      display: grid;
+      gap: 9px;
+    }
+    details {
+      border: 1px solid #e5eaf1;
+      border-radius: 12px;
+      padding: 0 14px;
+      background: #fff;
+    }
+    summary {
+      padding: 13px 0;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: #27456f;
+    }
+    details p {
+      margin: 0 0 14px;
+      color: #63748c;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 820px) {
+      .summary-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .rules, .foot-grid, .knowledge-layout, .protocol-grid, .term-list { grid-template-columns: 1fr; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+      .updated { white-space: normal; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 26px, 1180px); }
+      header { padding-bottom: 46px; }
+      .topbar nav { gap: 12px; }
+      .stat { padding: 16px; }
+      .controls { align-items: stretch; }
+      .search { width: 100%; }
+    }
+  
+    /* 新手知识区 */
+    .guide-section { margin-top: 42px; }
+    .guide-reading-order {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 17px 0;
+    }
+    .guide-reading-order article {
+      min-height: 118px;
+      padding: 16px;
+      border: 1px solid #e1e9f3;
+      border-radius: 15px;
+      background: #fbfdff;
+    }
+    .guide-reading-order b {
+      display: block;
+      color: #143e79;
+      font-size: 24px;
+      letter-spacing: -.04em;
+    }
+    .guide-reading-order span {
+      display: block;
+      margin-top: 7px;
+      color: #64758c;
+      font-size: 13px;
+      line-height: 1.62;
+    }
+    .guide-alert {
+      margin: 17px 0;
+      padding: 15px 17px;
+      border: 1px solid #f1d491;
+      border-radius: 14px;
+      background: #fff7e4;
+      color: #6f4d00;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+    }
+    .guide-card, .guide-panel {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+    .guide-card { padding: 20px; }
+    .guide-card > span {
+      display: inline-flex;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #edf5ff;
+      color: #175da7;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    .guide-card h3, .guide-panel h3 {
+      margin: 10px 0 0;
+      color: #17335e;
+      font-size: 17px;
+      letter-spacing: -.02em;
+    }
+    .guide-card p, .guide-panel > p {
+      margin: 9px 0 0;
+      color: #62748c;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .guide-note {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-left: 4px solid #2d75c4;
+      border-radius: 0 14px 14px 0;
+      background: #eff7ff;
+      color: #38536f;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .guide-panel {
+      margin-top: 16px;
+      padding: 21px;
+    }
+    .guide-terms, .guide-protocols {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .guide-terms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .guide-protocols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .guide-terms article, .guide-protocols article {
+      padding: 15px;
+      border: 1px solid #e3eaf3;
+      border-radius: 13px;
+      background: #fbfdff;
+    }
+    .guide-terms h4, .guide-protocols h4 {
+      margin: 0;
+      color: #24446e;
+      font-size: 14px;
+    }
+    .guide-terms p, .guide-protocols p {
+      margin: 7px 0 0;
+      color: #687a92;
+      font-size: 13px;
+      line-height: 1.64;
+    }
+    .guide-checklist {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .guide-checklist article {
+      min-height: 120px;
+      padding: 15px;
+      border: 1px solid #dbe9df;
+      border-radius: 14px;
+      background: #eaf8ef;
+    }
+    .guide-checklist b {
+      display: block;
+      color: #177345;
+      font-size: 14px;
+    }
+    .guide-checklist span {
+      display: block;
+      margin-top: 7px;
+      color: #4c6a59;
+      font-size: 12px;
+      line-height: 1.58;
+    }
+    .guide-table-wrap {
+      overflow-x: auto;
+      margin-top: 16px;
+      border: 1px solid #e4eaf2;
+      border-radius: 13px;
+    }
+    .guide-table { width: 100%; min-width: 720px; border-collapse: collapse; }
+    .guide-table th, .guide-table td {
+      padding: 13px 15px;
+      border-bottom: 1px solid #edf0f4;
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+      line-height: 1.62;
+    }
+    .guide-table th {
+      color: #53647c;
+      background: #f8fafc;
+      font-size: 12px;
+    }
+    .guide-table tr:last-child td { border-bottom: none; }
+    .guide-table td:first-child { color: #1d426f; font-weight: 750; white-space: nowrap; }
+    .guide-bottom {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+    }
+    .guide-bottom .guide-panel { height: 100%; }
+    .guide-faq { display: grid; gap: 10px; margin-top: 15px; }
+    .guide-faq details {
+      padding: 0 15px;
+      border: 1px solid #e4eaf1;
+      border-radius: 13px;
+      background: #fff;
+    }
+    .guide-faq summary {
+      padding: 14px 0;
+      cursor: pointer;
+      color: #274a77;
+      font-size: 14px;
+      font-weight: 750;
+    }
+    .guide-faq details p {
+      margin: 0 0 15px;
+      color: #62748c;
+      font-size: 13px;
+      line-height: 1.72;
+    }
+    @media (max-width: 920px) {
+      .guide-reading-order, .guide-checklist { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .guide-grid, .guide-protocols { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 650px) {
+      .guide-reading-order, .guide-grid, .guide-terms, .guide-protocols, .guide-checklist, .guide-bottom { grid-template-columns: 1fr; }
+    }
+
+  
+    /* 已核验资料卡 */
+    .verified-card {
+      margin: 0 0 16px;
+      border: 1px solid #dce8f5;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #f9fcff, #f2f8ff);
+      overflow: hidden;
+    }
+    .verified-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 19px 20px 16px;
+      border-bottom: 1px solid #dce8f5;
+    }
+    .verified-kicker {
+      display: inline-flex;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #e6f3ff;
+      color: #175da7;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    .verified-head h3 {
+      margin: 8px 0 0;
+      color: #17335e;
+      font-size: 20px;
+      letter-spacing: -.025em;
+    }
+    .verified-head p {
+      max-width: 660px;
+      margin: 7px 0 0;
+      color: #5f7189;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .verified-date {
+      white-space: nowrap;
+      color: #5f7189;
+      font-size: 12px;
+    }
+    .plan-summary {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      padding: 16px 20px;
+    }
+    .plan-stat {
+      padding: 13px;
+      border: 1px solid #dce8f5;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .plan-stat b {
+      display: block;
+      color: #12396d;
+      font-size: 18px;
+      letter-spacing: -.025em;
+    }
+    .plan-stat span {
+      display: block;
+      margin-top: 5px;
+      color: #6b7b90;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .plan-details {
+      padding: 0 20px 19px;
+    }
+    .plan-details summary {
+      cursor: pointer;
+      color: #235f9e;
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .plan-table-wrap {
+      overflow-x: auto;
+      margin-top: 13px;
+      border: 1px solid #dce8f5;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .plan-table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+    }
+    .plan-table th, .plan-table td {
+      padding: 11px 13px;
+      border-bottom: 1px solid #edf2f7;
+      text-align: left;
+      color: #3f536e;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .plan-table th {
+      color: #5b6c83;
+      background: #f8fbfe;
+      font-size: 11px;
+    }
+    .plan-table tr:last-child td { border-bottom: 0; }
+    .plan-table td:nth-child(2) { color: #12396d; font-weight: 800; white-space: nowrap; }
+    .verified-footnote {
+      padding: 0 20px 19px;
+      color: #718198;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    @media (max-width: 900px) {
+      .plan-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 550px) {
+      .verified-head { flex-direction: column; }
+      .plan-summary { grid-template-columns: 1fr; }
+    }
+.plan-card-intro {
+      margin: 10px 20px 0;
+      color: #64758c;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+    .plan-table td:last-child {
+      min-width: 260px;
+      color: #61728a;
+    }
+
+  
+    .vpn-rules {
+      margin: 0 20px 16px;
+      padding: 14px 15px;
+      border: 1px solid #dce8f5;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+    .vpn-rules h4 {
+      margin: 0;
+      color: #173963;
+      font-size: 13px;
+    }
+    .vpn-rules ul {
+      margin: 9px 0 0;
+      padding-left: 18px;
+      color: #61728a;
+    }
+    .vpn-rules li {
+      margin: 5px 0;
+      font-size: 12px;
+      line-height: 1.62;
+    }
+    .vpn-rules strong { color: #24446e; }
+
+  
+    .extra-link-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 20px 16px;
+      padding: 11px 13px;
+      border: 1px solid #dce8f5;
+      border-radius: 11px;
+      background: #fbfdff;
+      color: #6d7e95;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .extra-link-row a {
+      color: #1c5fa4;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .extra-link-row a:hover { text-decoration: underline; }
+
+  
+/* UI refresh: directory-first layout, compact detail cards, clearer hierarchy */
+:root {
+  --ink: #10243f;
+  --ink-soft: #294667;
+  --paper: #ffffff;
+  --paper-soft: #f7faff;
+  --canvas: #f3f7fc;
+  --accent: #2167b5;
+  --accent-strong: #124b8d;
+  --accent-soft: #e9f3ff;
+  --teal: #1f806a;
+  --line-strong: #d8e2ef;
+  --shadow-soft: 0 12px 30px rgba(19, 57, 101, .08);
+  --shadow-lift: 0 18px 42px rgba(19, 57, 101, .14);
+}
+
+html { scroll-padding-top: 20px; }
+body {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(70, 146, 235, .12), transparent 24rem),
+    radial-gradient(circle at 96% 30%, rgba(57, 169, 133, .10), transparent 22rem),
+    var(--canvas);
+}
+.wrap { width: min(1200px, calc(100% - 40px)); }
+
+header {
+  padding: 20px 0 66px;
+  background:
+    radial-gradient(circle at 93% -24%, rgba(113, 188, 255, .32), transparent 33rem),
+    linear-gradient(125deg, #0d2341 0%, #103c72 52%, #1668ad 100%);
+}
+header::after {
+  width: 470px;
+  height: 470px;
+  right: -190px;
+  top: -275px;
+  border-color: rgba(255,255,255,.16);
+}
+.topbar {
+  padding: 9px 12px 9px 16px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 14px;
+  background: rgba(4, 24, 54, .22);
+  backdrop-filter: blur(12px);
+}
+.brand-mark {
+  border: 0;
+  background: linear-gradient(135deg, #63b3ff, #c6e4ff);
+  color: #103a6c;
+  box-shadow: 0 6px 16px rgba(22, 105, 190, .26);
+}
+.topbar nav { gap: 7px; }
+.topbar nav a {
+  padding: 7px 9px;
+  border-radius: 8px;
+  transition: background .18s ease, color .18s ease;
+}
+.topbar nav a:hover { background: rgba(255,255,255,.12); }
+
+.hero { padding-top: 65px; max-width: 920px; }
+.hero h1 { max-width: 800px; font-size: clamp(38px, 6.1vw, 64px); }
+.hero p { max-width: 720px; }
+.hero-meta { margin-top: 24px; }
+.meta-pill {
+  border: 1px solid rgba(201, 227, 255, .28);
+  background: rgba(255,255,255,.10);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .08);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 0 16px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.hero-button:hover { transform: translateY(-2px); }
+.hero-button-primary {
+  color: #0d3971;
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .15);
+}
+.hero-button-secondary {
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(255,255,255,.10);
+}
+
+.summary-grid { gap: 16px; }
+.stat {
+  position: relative;
+  overflow: hidden;
+  padding: 21px 20px;
+  border: 1px solid #e0e9f3;
+  box-shadow: var(--shadow-soft);
+}
+.stat::after {
+  content: "";
+  position: absolute;
+  inset: auto -18px -24px auto;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(85, 164, 248, .18), rgba(106, 208, 175, .08));
+}
+.stat .num { color: var(--accent-strong); }
+.notice {
+  border-color: #f2d694;
+  box-shadow: 0 7px 18px rgba(139, 94, 0, .06);
+}
+
+.quick-jump { margin-top: 16px; }
+.quick-jump-inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.quick-jump-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 17px;
+  border: 1px solid #dce8f5;
+  border-radius: 15px;
+  color: var(--ink);
+  text-decoration: none;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 8px 18px rgba(31, 72, 118, .05);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.quick-jump-card:hover {
+  transform: translateY(-2px);
+  border-color: #9cc8f6;
+  box-shadow: var(--shadow-soft);
+}
+.quick-jump-num {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 9px;
+  color: #16589e;
+  background: #eaf4ff;
+  font-size: 12px;
+  font-weight: 850;
+}
+.quick-jump-text strong,
+.quick-jump-text small { display: block; }
+.quick-jump-text strong { color: #15395f; font-size: 14px; }
+.quick-jump-text small { margin-top: 3px; color: #73839a; font-size: 12px; }
+.quick-jump-arrow { color: #2469b0; font-size: 20px; }
+
+.section { margin-top: 54px; }
+.section-heading { margin-bottom: 18px; }
+.section-heading h2 { font-size: clamp(26px, 3vw, 34px); }
+.section-copy { max-width: 700px; }
+
+#directory {
+  scroll-margin-top: 18px;
+}
+#directory .panel {
+  border-color: #d7e5f3;
+  box-shadow: var(--shadow-lift);
+}
+.controls {
+  padding: 16px 18px;
+  background: linear-gradient(180deg, #fbfdff, #f7faff);
+}
+.filter {
+  border-color: #d7e2ef;
+  font-weight: 700;
+  transition: all .16s ease;
+}
+.filter:hover { transform: translateY(-1px); }
+.filter.active {
+  background: linear-gradient(135deg, #124a89, #2777c5);
+  border-color: #1e68b0;
+  box-shadow: 0 6px 12px rgba(33, 103, 181, .18);
+}
+.search input {
+  min-height: 40px;
+  border-radius: 12px;
+  background: #fff;
+}
+.table-scroll { background: #fff; }
+table { min-width: 760px; }
+th {
+  padding: 14px 16px;
+  color: #58708d;
+  background: #f5f8fc;
+}
+td { padding: 15px 16px; }
+tr:hover td { background: #f5f9ff; }
+.link {
+  padding: 7px 10px;
+  border: 1px solid #bad7f4;
+  border-radius: 9px;
+  color: #155ea8;
+  background: #eff7ff;
+  font-weight: 800;
+}
+.link:hover {
+  text-decoration: none;
+  border-color: #76afe6;
+  background: #e5f2ff;
+}
+.badge { padding: 6px 9px; }
+
+.detail-library {
+  margin-top: 24px;
+  scroll-margin-top: 18px;
+}
+.detail-library-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 34px 0 16px;
+}
+.detail-library-head h2 {
+  margin: 0;
+  color: #102f56;
+  font-size: clamp(24px, 3vw, 31px);
+  letter-spacing: -.035em;
+}
+.detail-library-head p {
+  max-width: 680px;
+  margin: 7px 0 0;
+  color: #6a7d95;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.detail-library-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.small-action {
+  min-height: 35px;
+  padding: 0 12px;
+  border: 1px solid #1d65ad;
+  border-radius: 9px;
+  color: #fff;
+  background: #216bb7;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.small-action:hover { background: #15589d; }
+.small-action-muted {
+  color: #3e5c7e;
+  border-color: #cfdae7;
+  background: #fff;
+}
+.small-action-muted:hover { background: #f5f8fb; }
+
+.detail-library-grid { display: grid; gap: 12px; }
+.platform-detail {
+  margin: 0;
+  border: 1px solid #dbe7f4;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 7px 17px rgba(21, 67, 116, .05);
+  overflow: hidden;
+  transition: box-shadow .18s ease, border-color .18s ease;
+}
+.platform-detail[open] {
+  border-color: #a9ccf0;
+  box-shadow: var(--shadow-soft);
+}
+.platform-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 17px 19px;
+  cursor: pointer;
+  list-style: none;
+  background: linear-gradient(100deg, #fff 0%, #f7fbff 100%);
+}
+.platform-summary::-webkit-details-marker { display: none; }
+.platform-summary:hover { background: linear-gradient(100deg, #f9fcff 0%, #eef7ff 100%); }
+.platform-summary-main,
+.platform-summary-meta { min-width: 0; }
+.platform-summary-kicker,
+.platform-summary-title,
+.platform-summary-preview,
+.platform-summary-meta span { display: block; }
+.platform-summary-kicker {
+  margin-bottom: 5px;
+  color: #2775bd;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .03em;
+}
+.platform-summary-title {
+  color: #16385e;
+  font-size: 18px;
+  letter-spacing: -.02em;
+}
+.platform-summary-preview {
+  margin-top: 5px;
+  overflow: hidden;
+  color: #71839a;
+  font-size: 12px;
+  line-height: 1.55;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.platform-summary-meta {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  color: #6f8096;
+  font-size: 12px;
+  text-align: right;
+}
+.platform-summary-open {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid #c9ddf1;
+  border-radius: 8px;
+  color: #2465a6;
+  background: #fff;
+  font-weight: 800;
+}
+.platform-summary-open::after { content: "⌄"; font-size: 16px; line-height: 10px; }
+.platform-detail[open] .platform-summary-open { color: #fff; border-color: #206db5; background: #216bb7; }
+.platform-detail[open] .platform-summary-open::after { content: "⌃"; }
+
+.platform-detail .verified-head { display: none; }
+.platform-detail .plan-card-intro {
+  margin: 0;
+  padding: 13px 20px 0;
+  color: #637991;
+}
+.platform-detail .plan-summary { padding: 14px 20px; }
+.platform-detail .plan-stat {
+  border-color: #dfeaf5;
+  background: #fbfdff;
+}
+.platform-detail .plan-stat b { color: #14569d; }
+.platform-detail .plan-details { padding-bottom: 17px; }
+.platform-detail .vpn-rules,
+.platform-detail .extra-link-row {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.platform-detail .verified-footnote {
+  padding-top: 0;
+}
+.platform-detail .plan-details > details {
+  border-color: #dce8f5;
+  background: #fff;
+}
+.platform-detail .plan-details > details > summary {
+  padding: 12px 13px;
+  color: #205f9f;
+  background: #f7fbff;
+}
+
+.rules .rule-card,
+.guide-card,
+.guide-panel,
+.concept-card,
+.foot-card {
+  box-shadow: 0 8px 20px rgba(26, 61, 101, .045);
+}
+.rules .rule-card,
+.guide-card,
+.guide-panel { transition: transform .18s ease, box-shadow .18s ease; }
+.rules .rule-card:hover,
+.guide-card:hover,
+.guide-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+.guide-alert,
+.guide-note,
+.definition-note { box-shadow: 0 6px 14px rgba(111, 77, 0, .05); }
+.guide-reading-order article {
+  border-color: #d8e7f6;
+  background: linear-gradient(180deg, #ffffff, #f7fbff);
+}
+.guide-reading-order b { color: #1e65ad; }
+.guide-checklist article {
+  border-color: #cfe8db;
+  background: linear-gradient(180deg, #f3fcf7, #e9f8ef);
+}
+.guide-panel h3,
+.guide-card h3 { color: #143b67; }
+
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #b8d4f0;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, #1c61a9, #2d82d0);
+  box-shadow: 0 12px 26px rgba(28, 97, 169, .25);
+  font-size: 22px;
+  font-weight: 850;
+  text-decoration: none;
+}
+.scroll-top:hover { transform: translateY(-2px); }
+
+@media (max-width: 920px) {
+  .quick-jump-inner { grid-template-columns: 1fr; }
+  .detail-library-head { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 720px) {
+  .wrap { width: min(100% - 26px, 1200px); }
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .topbar nav { width: 100%; }
+  .hero { padding-top: 43px; }
+  .summary-grid { gap: 11px; }
+  .stat { padding: 16px; }
+  .platform-summary { gap: 12px; padding: 15px; }
+  .platform-summary-title { font-size: 16px; }
+  .platform-summary-preview { white-space: normal; }
+  .platform-summary-meta { align-items: flex-end; flex-direction: column; }
+  .platform-detail .plan-summary { padding: 12px 15px; }
+  .platform-detail .plan-card-intro,
+  .platform-detail .plan-details,
+  .platform-detail .verified-footnote { padding-left: 15px; padding-right: 15px; }
+  .platform-detail .vpn-rules,
+  .platform-detail .extra-link-row { margin-left: 15px; margin-right: 15px; }
+}
+@media (max-width: 480px) {
+  .hero-actions { width: 100%; }
+  .hero-button { flex: 1 1 100%; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat .num { font-size: 25px; }
+  .filters { gap: 6px; }
+  .filter { padding: 7px 9px; font-size: 12px; }
+  .platform-summary { grid-template-columns: 1fr; }
+  .platform-summary-meta { align-items: flex-start; text-align: left; }
+  .scroll-top { right: 14px; bottom: 14px; }
+}
+
+/* 链接记录 */
+.detail-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid #b9d8f4;
+  border-radius: 9px;
+  color: #165fa9;
+  background: #eff7ff;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.detail-jump:hover {
+  transform: translateY(-1px);
+  border-color: #74afe7;
+  background: #e4f2ff;
+  text-decoration: none;
+}
+.platform-detail.detail-focus {
+  animation: detailFocus 1.8s ease-out;
+}
+@keyframes detailFocus {
+  0% { box-shadow: 0 0 0 0 rgba(33, 107, 183, .42), var(--shadow-soft); }
+  35% { box-shadow: 0 0 0 8px rgba(33, 107, 183, .16), var(--shadow-lift); }
+  100% { box-shadow: var(--shadow-soft); }
+}
+
+/* 待整理条目页 */
+.pending-page-note {
+  color: #6f5818;
+}
+#directory .panel {
+  border-color: #eadfbf;
+}
+#directory .controls {
+  background: linear-gradient(180deg, #fffdf8, #fbf8ee);
+}
+#directory .filter.active {
+  background: linear-gradient(135deg, #775c1a, #aa8125);
+  border-color: #8f6d1e;
+  box-shadow: 0 6px 12px rgba(143, 109, 30, .16);
+}
+#directory .link {
+  color: #765b1a;
+  border-color: #ead9ad;
+  background: #fff8e9;
+}
+#directory .link:hover {
+  border-color: #d1ad52;
+  background: #fff2d4;
+}
+</style>
+</head>
+<body>
+<header id="top">
+<div class="wrap">
+<div class="topbar">
+<div class="brand"><span class="brand-mark">✓</span> 平台目录</div>
+<nav aria-label="页面导航">
+<a href="#knowledge">新手知识</a>
+<a href="#directory">待整理目录</a>
+<a href="#rules">收录规则</a>
+<a href="#maintenance">维护说明</a>
+</nav>
+</div>
+<div class="hero">
+<p class="eyebrow">PUBLIC INFORMATION DIRECTORY</p>
+<h1>机场 VPN 平台<br/>待整理条目与新手指南</h1>
+<p>本页保留完整的新手指南、收录规则与筛选界面，目录暂列出尚未完成链接替换与资料整理的条目，用于后续逐项核对和补充。页面不做速度排名，不将第三方宣传视为事实结论。</p>
+<div class="hero-meta">
+<span class="meta-pill">待整理：101 个平台</span>
+<span class="meta-pill">状态：链接与资料待确认</span>
+<span class="meta-pill">内部整理单文件版</span>
+</div><div class="hero-actions"><a class="hero-button hero-button-primary" href="#directory">查看待整理目录</a><a class="hero-button hero-button-secondary" href="#knowledge">阅读新手指南</a></div>
+</div>
+</div>
+</header>
+<main class="wrap">
+<section aria-label="目录概览" class="summary-grid">
+<div class="stat"><div class="num">101</div><div class="label">待整理平台</div></div>
+<div class="stat"><div class="num">53</div><div class="label">收费 / 订阅</div></div>
+<div class="stat"><div class="num">45</div><div class="label">免费 / 试用</div></div>
+<div class="stat"><div class="num">3</div><div class="label">免费 / 付费服务</div></div>
+</section>
+<section aria-label="目录说明" class="notice"><strong>待整理范围：</strong>本页列出尚未完成链接替换与公开资料整理的 101 个条目，方便后续逐项核对。链接记录、分类和访问环境来自此前整理数据，可能过期或发生变化；在完成核验前，不建议把它们视为推荐或可用性结论。</section><section aria-label="快速导航" class="quick-jump"><div class="quick-jump-inner"><a class="quick-jump-card" href="#directory"><span class="quick-jump-num">01</span><span class="quick-jump-text"><strong>浏览目录</strong><small>查看待整理平台与现有链接记录。</small></span><span class="quick-jump-arrow">→</span></a><a class="quick-jump-card" href="#knowledge"><span class="quick-jump-num">02</span><span class="quick-jump-text"><strong>阅读指南</strong><small>了解常见术语和查看方法。</small></span><span class="quick-jump-arrow">→</span></a></div></section><section class="section" id="directory">
+<div class="section-heading">
+<div>
+<h2>待整理平台目录</h2>
+<p class="section-copy">当前列出 101 个尚未完成链接替换与资料整理的条目。表格仅保留名称、分类、链接记录与访问环境，后续完成核验后可移入公开发布版。</p>
+</div>
+<div aria-live="polite" class="updated" id="resultCount"></div>
+</div>
+<div class="panel">
+<div class="controls">
+<div aria-label="目录筛选" class="filters" role="group">
+<button class="filter active" data-filter="all">全部</button>
+<button class="filter" data-filter="paid">收费 / 订阅</button>
+<button class="filter" data-filter="free_trial">免费 / 试用</button>
+<button class="filter" data-filter="software">免费 / 付费服务</button>
+<button class="filter" data-filter="vpn">建议 VPN / 全局代理</button>
+<button class="filter" data-filter="direct">可先直连</button>
+</div>
+<label class="search">
+<input autocomplete="off" id="searchInput" placeholder="搜索平台名称或链接记录…" type="search"/>
+</label>
+</div>
+<div class="table-scroll">
+<table>
+<thead>
+<tr><th>平台</th><th>分类</th><th>链接记录</th><th>访问环境</th></tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
+<div class="empty" hidden="" id="emptyState">没有匹配的记录。</div>
+</div>
+</section>
+<section class="section" id="rules">
+<div class="section-heading">
+<div>
+<h2>收录规则</h2>
+<p class="section-copy">结构上借鉴“通知、目录、维护记录”分层方式，但改成更便于筛选和后期维护的中性字段。</p>
+</div>
+</div>
+<div class="rules">
+<article class="rule-card">
+<div class="icon">01</div>
+<h3>名称完全相同才去重</h3>
+<p>名称不同的条目分别保留，并在后续通过来源、链接与备注补充关系信息。</p>
+</article>
+<article class="rule-card">
+<div class="icon">02</div>
+<h3>链接可替换</h3>
+<p>保留“当前入口”和“后期维护信息”两列。维护信息为空时，页面展示当前入口。</p>
+</article>
+<article class="rule-card">
+<div class="icon">03</div>
+<h3>不做主观性能排行</h3>
+<p>页面仅记录公开入口、访问说明、类别与维护状态；不宣称速度、稳定性或可用性优劣。</p>
+</article>
+</div>
+</section>
+<section class="section guide-section" id="knowledge">
+<div class="section-heading">
+<div>
+<h2>新手先看：不要急着点链接</h2>
+<p class="section-copy">这是帮助你读懂平台目录的入门说明。它不告诉你“谁最好用”，只解释常见名称、链接状态，以及查看资料时应注意什么。</p>
+</div>
+</div>
+<div aria-label="阅读顺序" class="guide-reading-order">
+<article><b>01</b><span>先看平台属于收费、免费、试用还是客户端服务。</span></article>
+<article><b>02</b><span>再看当前入口和链接状态，不要把页面能打开当成服务保证。</span></article>
+<article><b>03</b><span>确认自己的设备、客户端和协议是否兼容。</span></article>
+<article><b>04</b><span>最后看资料日期、公开规则和是否有维护信息。</span></article>
+</div>
+<div class="guide-alert">
+<strong>先说明：</strong>平台被收录，不代表一定稳定、安全、适合所有人，也不代表链接会一直有效。分类、价格、试用与功能都可能变化，应以平台当前公开页面和最后核验日期为准。
+  </div>
+<div class="guide-grid">
+<article class="guide-card">
+<span>一句话理解</span>
+<h3>什么是“机场”？</h3>
+<p>“机场”是中文网络里的非正式说法，通常指提供账号、节点、订阅链接和管理后台的一类服务。它不是统一技术标准，也不能代表服务质量或经营主体。</p>
+</article>
+<article class="guide-card">
+<span>一句话理解</span>
+<h3>什么是“节点”？</h3>
+<p>节点可以先理解成不同的连接出口。同一平台可能有多个地区和多个节点；节点名称通常只表示位置或标签，不能单独说明速度、稳定性或适合度。</p>
+</article>
+<article class="guide-card">
+<span>一句话理解</span>
+<h3>什么是“订阅”？</h3>
+<p>订阅通常是一条链接或一份配置。客户端读取订阅后，可以一次加载多条节点配置，不用逐个手动添加。不同平台可能设置更新、设备或有效期限制。</p>
+</article>
+</div>
+<div class="guide-note">
+<strong>新手只要先记住三件事：</strong>平台不等于一定可靠；网页能打开不等于服务一定可用；协议名字复杂，也不等于越新越好。先确认设备兼容性、公开规则和信息日期，再决定是否继续了解。
+  </div>
+<div class="guide-panel">
+<h3>VPN、代理、客户端和面板：不要全部混成一个词</h3>
+<div class="guide-terms">
+<article><h4>VPN</h4><p>可以理解为一类建立加密网络通道的技术或服务形态。不同 VPN 的服务方式、隐私政策和适用场景可能完全不同。</p></article>
+<article><h4>代理</h4><p>可以理解为“帮助转发网络请求”的方式。很多平台会通过代理节点提供服务，但具体实现与功能由不同服务方决定。</p></article>
+<article><h4>客户端</h4><p>就是手机或电脑上的应用程序，用来导入订阅、管理节点或登录服务。有的平台支持第三方客户端，有的只允许官方客户端。</p></article>
+<article><h4>面板</h4><p>一般指登录后的网页后台。通常可查看套餐、剩余流量、订单、公告、订阅链接、设备限制或工单入口。</p></article>
+</div>
+</div>
+<div class="guide-panel" id="protocols">
+<h3>协议是什么？新手只要看“支不支持”</h3>
+<p>协议可以先理解为客户端和服务端沟通时使用的规则。你不需要背原理；看到某个协议时，先确认自己的客户端和版本是否支持即可。</p>
+<div class="guide-protocols">
+<article><h4>Shadowsocks</h4><p>常见协议名称之一。很多客户端能够识别相关配置，但不同平台的实现和附加功能可能不同。</p></article>
+<article><h4>Trojan</h4><p>常见协议名称。看到它时不需要判断“高级不高级”，先看客户端是否支持、平台是否有公开说明。</p></article>
+<article><h4>VMess / VLESS</h4><p>这两个名字常一起出现，但不是同一个协议。是否能导入或使用，要看客户端和具体版本。</p></article>
+<article><h4>Hysteria2</h4><p>常被归入较新的协议或传输方案。关键仍是客户端是否支持，而不是协议名是否新。</p></article>
+<article><h4>AnyTLS</h4><p>较新的协议名称之一。能否使用取决于平台配置和客户端实现，不是只看介绍页的一句话。</p></article>
+<article><h4>xhttp</h4><p>可能与其他协议或传输方式一起出现。它不等于“更快”或“更稳定”，只是不同实现方式之一。</p></article>
+</div>
+</div>
+<div class="guide-panel">
+<h3>直连、中转、专线、倍率：这些标签怎么理解？</h3>
+<p>这些词多用于描述线路、资源或计费方式。不同平台的用法可能不完全一致，因此更适合把它们当作“待核验的描述字段”，而不是统一的好坏评分。</p>
+<div class="guide-terms">
+<article><h4>直连</h4><p>通常表示平台描述的一种网络路径。具体路径、覆盖地区和表现会随服务方配置变化，不能只看两个字下结论。</p></article>
+<article><h4>中转</h4><p>通常表示网络请求可能经过额外转发环节。它是一种结构描述，不是“更好”或“更差”的统一标准。</p></article>
+<article><h4>专线</h4><p>常出现于营销文案。不同服务对“专线”的定义、覆盖范围和计费方式可能不同，应以公开说明为准。</p></article>
+<article><h4>流量倍率</h4><p>可以理解为流量如何扣除。例如 0.5 倍可能表示实际传输 100 GB，只从套餐扣除 50 GB；它不直接代表速度或延迟。</p></article>
+</div>
+</div>
+<div class="guide-panel" id="checklist">
+<h3>第一次看平台，建议按这 5 步检查</h3>
+<div class="guide-checklist">
+<article><b>1. 看分类</b><span>收费、免费、试用、长期流量包或仅官方客户端，先分清它属于哪一类。</span></article>
+<article><b>2. 看链接</b><span>注意当前入口、是否短链接、是否跳转页，以及页面标注的访问状态。</span></article>
+<article><b>3. 看兼容性</b><span>确认手机、电脑或路由器是否支持平台要求的客户端与协议。</span></article>
+<article><b>4. 看规则</b><span>阅读公开套餐、设备限制、流量周期、退款与续费说明，避免只看宣传标题。</span></article>
+<article><b>5. 看日期</b><span>优先看最后核验日期。旧链接、旧套餐和旧试用信息可能已经失效。</span></article>
+</div>
+</div>
+<div class="guide-panel">
+<h3>目录里的状态标签怎么读</h3>
+<p>状态标签不是性能评分，而是用于说明这条资料目前处于什么信息状态。</p>
+<div class="guide-table-wrap">
+<table class="guide-table">
+<thead>
+<tr><th>标签</th><th>一般表示什么</th><th>不要把它理解成什么</th></tr>
+</thead>
+<tbody>
+<tr><td>可读取</td><td>某次检查中，网页内容可以被正常读取。</td><td>不代表注册、套餐、节点和实际服务都正常。</td></tr>
+<tr><td>需验证</td><td>页面出现验证码、滑块或人机验证。</td><td>不代表网站一定失效，也不代表一定安全。</td></tr>
+<tr><td>需 JavaScript</td><td>页面需要浏览器执行脚本才能显示主要内容。</td><td>不代表平台一定不可用，只表示静态检查有限。</td></tr>
+<tr><td>跳转页 / 短链接</td><td>当前链接会跳到其他页面，或尚未解析出最终页面。</td><td>不代表最终服务页已被独立核验。</td></tr>
+<tr><td>待复核</td><td>条目来自来源列表，但还没有完成独立整理或更新。</td><td>不代表推荐、背书或可长期使用。</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="guide-bottom">
+<article class="guide-panel">
+<h3>账号和链接安全：新手多做一步检查</h3>
+<p>目录中的链接只用于资料整理。打开任何页面前，建议确认域名是否与目录记录一致；遇到陌生短链接、跳转页或要求提交超出必要范围的信息时，先暂停并核对来源。</p>
+<p>不要在不熟悉的平台重复使用重要密码。涉及客户端时，优先使用可核验的官方发布渠道，并留意设备权限、更新来源和公开说明。</p>
+</article>
+<article class="guide-panel">
+<h3>套餐和付款前，至少确认这几件事</h3>
+<p>月付、季付、年付、按量和长期流量包的规则不同。“不限时”通常指流量不按固定周期清零，不等于不限流量；“不限设备”也可能仍有合理使用或登录限制。</p>
+<p>付款前应阅读公开价格、流量周期、设备限制、续费方式和退款说明。目录只记录资料，不替代平台自己的规则页面。</p>
+</article>
+</div>
+<div class="guide-panel" id="faq">
+<h3>新手最常问的问题</h3>
+<div class="guide-faq">
+<details><summary>网页能打开，是不是就说明平台没问题？</summary><p>不是。页面能打开，只能说明该地址在某次查看时有响应。注册、付款、套餐、节点、客户端和实际连接情况都可能另外变化。</p></details>
+<details><summary>协议名字越新，是不是就越好？</summary><p>不一定。对新手来说，更重要的是自己的客户端是否支持、平台是否把兼容性说明清楚、资料是否近期更新。</p></details>
+<details><summary>两个网站界面很像，是不是同一个团队？</summary><p>不能这样判断。很多网站会使用相似或相同的开源面板与模板。页面相似不等于经营主体、线路来源、服务规则或维护情况相同。</p></details>
+<details><summary>免费和试用是不是一定不能用？</summary><p>不一定。免费或试用只是收费方式与时间范围的描述，不是质量评价。它们的额度、规则和持续时间往往变化更快，因此更要关注公开说明和最后核验日期。</p></details>
+<details><summary>为什么要保留“最后核验日期”和“来源”？</summary><p>因为链接、套餐、试用、客户端支持和网站状态都可能变化。日期帮助读者判断资料新旧；来源帮助区分“来源页面写了什么”和“目录是否已独立复核”。</p></details>
+</div>
+</div>
+</section>
+<section class="section" id="maintenance">
+<div class="section-heading">
+<div>
+<h2>维护说明</h2>
+<p class="section-copy">建议把该页面作为仓库首页。完整数据已同时保存为 YAML；后续新增、维护信息或调整分类时，只需更新数据文件并重新生成页面即可。</p>
+</div>
+</div>
+<div class="foot-grid">
+<article class="foot-card">
+<h3>建议的后续字段</h3>
+<ul>
+<li>访问链接、公开套餐字段、服务方式与最后核验日期</li>
+<li>资料状态：已录入、待补充、待复核与最后核验日期</li>
+<li>注册状态、服务方式、月付最低档、试用信息、最后核验日期</li>
+<li>平台分类：收费、免费、试用、客户端型服务</li>
+</ul>
+</article>
+<article class="foot-card">
+<h3>发布边界</h3>
+<p>仅记录可公开获得的资料。涉及价格、试用、套餐、功能或政策的内容应标注日期并以对应平台的公开页面为准。</p>
+<p>平台页面、套餐与活动可能变化；建议持续维护最后核验日期和公开说明。</p>
+</article>
+</div>
+</section>
+<footer>
+<div class="footer-line">
+<span>机场 VPN 平台整合目录 · 待整理 101 个平台</span>
+<span>链接与资料待后续逐项核对</span>
+</div>
+</footer>
+</main>
+<script>
+    const records = [{"id":"platform-012","name":"FlyBit","category_label":"收费 / 订阅","group":"paid","platform_url":"https://flybit.vip/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-013","name":"NyanSS","category_label":"收费 / 订阅","group":"paid","platform_url":"https://billing.nyanss001.top/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-014","name":"ofoNET","category_label":"收费 / 订阅","group":"paid","platform_url":"https://ofotw.org/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-015","name":"iNetS","category_label":"收费 / 订阅","group":"paid","platform_url":"https://inets.io/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-016","name":"良心云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://xn--9kqz23b19z.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-017","name":"happy 猫","category_label":"收费 / 订阅","group":"paid","platform_url":"https://www.happymao.cat/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-018","name":"BoostNet","category_label":"收费 / 订阅","group":"paid","platform_url":"https://jctj.boostqz.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-019","name":"悠兔","category_label":"收费 / 订阅","group":"paid","platform_url":"https://jctj.youtunice.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-020","name":"WgetCloud","category_label":"收费 / 订阅","group":"paid","platform_url":"https://invite.wgetcloud.ltd/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-021","name":"TAG","category_label":"收费 / 订阅","group":"paid","platform_url":"https://honven.dedicated-afflink.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-022","name":"贝贝云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://beibei.cloud/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-023","name":"Kycloud","category_label":"收费 / 订阅","group":"paid","platform_url":"https://my.cloudnz.cc/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-024","name":"老猫云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://www.laomaourl.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-025","name":"E-IX","category_label":"收费 / 订阅","group":"paid","platform_url":"https://cdn12.e-ix.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-026","name":"山海","category_label":"收费 / 订阅","group":"paid","platform_url":"https://shanhai.me/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-027","name":"龙猫云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://jctj02.lmvipaff03.cc/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-028","name":"海獭","category_label":"收费 / 订阅","group":"paid","platform_url":"https://haita.link/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-029","name":"万达云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://link.wdyserver.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-030","name":"web3 加速器","category_label":"收费 / 订阅","group":"paid","platform_url":"https://alink.web3aff1.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-031","name":"瑶瑶领先","category_label":"收费 / 订阅","group":"paid","platform_url":"https://yyssr.org/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-032","name":"STC-SERVER","category_label":"收费 / 订阅","group":"paid","platform_url":"https://acidrate.stc-spare1.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-033","name":"Just My Socks","category_label":"收费 / 订阅","group":"paid","platform_url":"https://justmysocks3.net/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-034","name":"大哥云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://honven20.dgywzc.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-035","name":"超实惠机场","category_label":"收费 / 订阅","group":"paid","platform_url":"https://cutt.ly/8tI4oH54","access_group":"direct","access_label":"可先直连尝试","status_label":"资料待整理","last_verified":""},{"id":"platform-036","name":"狗狗加速 VPN","category_label":"收费 / 订阅","group":"paid","platform_url":"https://www.dginv.click/","access_group":"direct","access_label":"可先直连尝试","status_label":"资料待整理","last_verified":""},{"id":"platform-037","name":"飞鸟云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://cutt.ly/Ct9Sj2me","access_group":"direct","access_label":"可先直连尝试","status_label":"资料待整理","last_verified":""},{"id":"platform-038","name":"蜂群 VPN","category_label":"收费 / 订阅","group":"paid","platform_url":"https://fengqun.io/","access_group":"direct","access_label":"可先直连尝试","status_label":"资料待整理","last_verified":""},{"id":"platform-040","name":"迷雾通","category_label":"免费 / 付费服务","group":"software","platform_url":"https://geph.io/zhs/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-041","name":"蓝灯","category_label":"免费 / 付费服务","group":"software","platform_url":"https://github.com/getlantern/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-042","name":"绿茶 VPN","category_label":"免费 / 付费服务","group":"software","platform_url":"http://www.lvchavpn.vip/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-043","name":"疾风","category_label":"收费 / 订阅","group":"paid","platform_url":"https://jifeng468.xyz/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-044","name":"edCloud","category_label":"收费 / 订阅","group":"paid","platform_url":"https://cdn.ednovas.org/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-045","name":"榴莲加速器","category_label":"收费 / 试用","group":"paid","platform_url":"https://www.liulianvpn.org/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-046","name":"泰山机场","category_label":"收费 / 试用","group":"paid","platform_url":"https://jp.taishan.pro/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-047","name":"Arisaka","category_label":"收费 / 试用","group":"paid","platform_url":"https://reurl.cc/XG68o7","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-048","name":"Free 机场","category_label":"收费 / 试用","group":"paid","platform_url":"https://zero.76898102.xyz/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-049","name":"ssrsub","category_label":"收费 / 试用","group":"paid","platform_url":"https://sub.ssrsub.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-050","name":"xqc.best","category_label":"收费 / 试用","group":"paid","platform_url":"https://xqc.best/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-051","name":"一元机场","category_label":"收费 / 试用","group":"paid","platform_url":"https://xn--4gq62f52gdss.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-052","name":"魔戒","category_label":"收费 / 试用","group":"paid","platform_url":"https://www.mojie.me/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-053","name":"TaiShan Net","category_label":"收费 / 试用","group":"paid","platform_url":"https://www.taishan.pro/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-054","name":"Bochidev","category_label":"收费 / 试用","group":"paid","platform_url":"https://b0chi.r-yu.me/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-055","name":"JetFast","category_label":"收费 / 试用","group":"paid","platform_url":"https://my.jetfast.dev/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-056","name":"STC","category_label":"收费 / 订阅","group":"paid","platform_url":"https://kjfx.github.io/stc","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-057","name":"飞机云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/4imuCsf","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-058","name":"极客云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/4pr1kLl","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-059","name":"速鹰666","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/4f4WCRM","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-060","name":"ExpressVPN","category_label":"收费 / 订阅","group":"paid","platform_url":"https://kjxl.cc/ExpressVPN","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-061","name":"Mitce","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/4jfLX5V","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-062","name":"NaiU_Net","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/46MaP0S","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-063","name":"追风岛","category_label":"收费 / 订阅","group":"paid","platform_url":"https://kjfx.github.io/zfd","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-064","name":"优云666","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/4bvFkLb","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-065","name":"桔子云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/4reNQTv","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-066","name":"XMRth","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/45978A8","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-067","name":"全球云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://bit.ly/4afhBxS","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-068","name":"幽速101","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://101ghost.com/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-069","name":"乐猫","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://a1.lemao888.top/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-070","name":"ikuuu","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://ikuuu.de/auth/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-071","name":"白变小樱","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://bbxy.xn--cesw6hd3s99f.com/auth/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-072","name":"纵云梯","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://zongyunti.com/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-073","name":"加速啦","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://jiasu.la/","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-074","name":"白羊星","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://baiyangxing.com/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-075","name":"爱翻机场","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://dash.afun.la/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-076","name":"中国国际机场","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://affman.mellanox.fyi/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-077","name":"Free机场","category_label":"收费 / 试用","group":"paid","platform_url":"https://zero.76898102.xyz","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-078","name":"Speedy","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://cloud.speedypro.xyz/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-079","name":"qlgq","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://www.qlgq.top/auth/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-080","name":"奈云","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://www.v2ny.com/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-081","name":"盛丰","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://xn--iiq540h.com/auth/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-082","name":"极光加速","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://jgjs02.com/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-083","name":"雨燕云","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://yuyan.online/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-084","name":"极客加速器","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://board.jike99.xyz/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-085","name":"FSCloud","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://dash.fscloud.cc/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-086","name":"逗猫","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://doucat.top/index.php#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-087","name":"besnow","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://besnow.me/index.php#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-088","name":"狗头加速器","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://lksi.xyz/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-089","name":"速云","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://zhu.suyun.bio/auth/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-090","name":"GLaDOS","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://glados.space/landing/J9C19-MQ4YW-PE0G9-62FP3","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-091","name":"tly","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://tly.sh/2313972","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-092","name":"sockboom","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://sockboom.love/auth/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-093","name":"KELECLOUD","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://panel.keleofficial.com/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-094","name":"大牛机场","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://daniu.e300daniu.top/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-095","name":"快乐星球","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://klxq.djgskc.top/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-096","name":"BT3rd-Speed","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://px.bt3.one/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-097","name":"彩虹云","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://chy.fit/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-098","name":"宝贝云","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://v3ssy.xyz/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-099","name":"proxyvip","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://www.proxyvip.xyz/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-100","name":"大迅云","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://daxun.club/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-101","name":"BCast","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://bcast.ink/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-102","name":"cd520","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://cd520.xyz/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-103","name":"翱翔云","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://www.aoxiangyun.top/auth/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-104","name":"Mickey","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://www.mickey.business/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-105","name":"cocolink","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://cocolink.org/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-106","name":"alori","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://oukasou.xyz/index.php#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-107","name":"aimacloud","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://www.aimacloud.info/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-108","name":"Synapse","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://user.xinna.co/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-109","name":"难民机场","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://nanmin.xyz/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-110","name":"BBQ烧烤店","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://qiaoxbbq.com/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-111","name":"猫熊网络加速器","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://mxwljsq.xyz/auth/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-112","name":"纵横加速","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://www.okvpn.cc/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""},{"id":"platform-113","name":"闪电狗","category_label":"免费 / 试用","group":"free_trial","platform_url":"https://shandiandog.com/#/register","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"资料待整理","last_verified":""}];
+    const body = document.getElementById('tableBody');
+    const emptyState = document.getElementById('emptyState');
+    const resultCount = document.getElementById('resultCount');
+    const filters = Array.from(document.querySelectorAll('.filter'));
+    const searchInput = document.getElementById('searchInput');
+    let activeFilter = 'all';
+
+    const escapeHTML = (value) => String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+
+    const linkOrMuted = (url, label) => {
+      if (!url) return '<span class="muted">资料待补充</span>';
+      const safe = escapeHTML(url);
+      return `<a class="link" href="${safe}" target="_blank" rel="noopener noreferrer" title="${safe}">${escapeHTML(label)}</a>`;
+    };
+
+    function categoryClass(record) {
+      if (record.group === 'free_trial') return 'cat-free';
+      if (record.group === 'software') return 'cat-trial';
+      return 'cat-paid';
+    }
+
+    function matches(record, query) {
+      const q = query.trim().toLowerCase();
+      const filterMatch =
+        activeFilter === 'all' ||
+        record.group === activeFilter ||
+        record.access_group === activeFilter;
+      const text = [
+        record.name, record.category_label, record.platform_url, record.access_label
+      ].join(' ').toLowerCase();
+      return filterMatch && (!q || text.includes(q));
+    }
+
+    function render() {
+      const query = searchInput.value || '';
+      const visible = records.filter(record => matches(record, query));
+      body.innerHTML = visible.map(record => `
+        <tr>
+          <td><span class="name">${escapeHTML(record.name)}</span></td>
+          <td><span class="badge ${categoryClass(record)}">${escapeHTML(record.category_label)}</span></td>
+          <td>${record.platform_url
+            ? `<a class="link" href="${escapeHTML(record.platform_url)}" target="_blank" rel="noopener noreferrer">查看链接记录 ↗</a>`
+            : '<span class="muted">链接待补充</span>'}</td>
+          <td><span class="badge ${record.access_group}">${escapeHTML(record.access_label)}</span></td>
+        </tr>
+      `).join('');
+      emptyState.hidden = visible.length !== 0;
+      resultCount.textContent = `显示 ${visible.length} / ${records.length} 条`;
+    }
+
+    filters.forEach(button => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter;
+        filters.forEach(item => item.classList.toggle('active', item === button));
+        render();
+      });
+    });
+    searchInput.addEventListener('input', render);
+    render();
+  </script>
+<a aria-label="返回页面顶部" class="scroll-top" href="#top">↑</a>
+<script>
+(() => {
+  const details = Array.from(document.querySelectorAll('.platform-detail'));
+  const expandAll = document.querySelector('[data-expand-all]');
+  const collapseAll = document.querySelector('[data-collapse-all]');
+
+  if (expandAll) {
+    expandAll.addEventListener('click', () => {
+      details.forEach(item => { item.open = true; });
+    });
+  }
+  if (collapseAll) {
+    collapseAll.addEventListener('click', () => {
+      details.forEach(item => { item.open = false; });
+      document.getElementById('plan-details')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+})();
+</script>
+</body>
+</html>
