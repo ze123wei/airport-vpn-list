@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="机场 VPN 平台整合目录：收费、试用、免费与客户端服务的公开信息、入口维护和状态记录。" name="description"/>
+<title>机场 VPN 平台目录｜当前发布版</title>
+<style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #64748b;
+      --line: #e6eaf0;
+      --navy: #12284c;
+      --blue: #275ea8;
+      --cyan: #e8f4ff;
+      --green: #16794a;
+      --green-bg: #e9f8ef;
+      --amber: #9a6700;
+      --amber-bg: #fff6dd;
+      --shadow: 0 18px 45px rgba(17, 35, 63, .08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% -10%, rgba(117, 184, 255, .22), transparent 28rem),
+        linear-gradient(180deg, #fbfcff 0%, var(--bg) 55%, #f2f5fa 100%);
+    }
+
+    a { color: inherit; }
+    .wrap { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+
+    header {
+      padding: 26px 0 58px;
+      background: linear-gradient(120deg, #0c1d39, #143e79 62%, #1f61aa);
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50%;
+      right: -220px;
+      top: -290px;
+      box-shadow: 0 0 0 70px rgba(255,255,255,.03), 0 0 0 140px rgba(255,255,255,.02);
+    }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center; gap: 18px;
+      position: relative; z-index: 1;
+    }
+    .brand {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 700; letter-spacing: .02em;
+    }
+    .brand-mark {
+      width: 30px; height: 30px; border: 1px solid rgba(255,255,255,.5); border-radius: 9px;
+      display: grid; place-items: center; background: rgba(255,255,255,.08);
+    }
+    .topbar nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: 13px; }
+    .topbar nav a { text-decoration: none; color: rgba(255,255,255,.82); }
+    .topbar nav a:hover { color: #fff; }
+
+    .hero { padding-top: 56px; position: relative; z-index: 1; }
+    .eyebrow {
+      margin: 0 0 12px; color: #a7cdfd; font-size: 13px; letter-spacing: .12em;
+      text-transform: uppercase; font-weight: 800;
+    }
+    h1 { margin: 0; max-width: 860px; font-size: clamp(34px, 6vw, 60px); line-height: 1.08; letter-spacing: -.045em; }
+    .hero p {
+      max-width: 760px; margin: 20px 0 0; color: rgba(255,255,255,.8);
+      font-size: clamp(15px, 2vw, 18px); line-height: 1.75;
+    }
+    .hero-meta {
+      margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .meta-pill {
+      border: 1px solid rgba(255,255,255,.22); background: rgba(255,255,255,.08);
+      border-radius: 999px; padding: 8px 12px; font-size: 13px; color: #eff7ff;
+    }
+
+    main { padding: 0 0 64px; }
+    .summary-grid {
+      margin-top: -30px; position: relative; z-index: 2;
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px;
+    }
+    .stat {
+      background: var(--surface); border: 1px solid rgba(226,231,239,.92); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 20px;
+    }
+    .stat .num { font-size: 30px; font-weight: 800; letter-spacing: -.04em; color: var(--navy); }
+    .stat .label { margin-top: 6px; font-size: 13px; color: var(--muted); }
+
+    .notice {
+      margin-top: 22px; border: 1px solid #f1d491; border-radius: 14px; background: var(--amber-bg);
+      color: #704f00; padding: 15px 17px; font-size: 14px; line-height: 1.65;
+    }
+    .notice strong { color: #5e4100; }
+
+    .section { margin-top: 46px; }
+    .section-heading { display: flex; justify-content: space-between; gap: 20px; align-items: flex-end; margin-bottom: 16px; }
+    h2 { margin: 0; font-size: clamp(24px, 3vw, 32px); letter-spacing: -.035em; color: #102444; }
+    .section-copy { max-width: 630px; color: var(--muted); font-size: 14px; line-height: 1.7; margin: 8px 0 0; }
+    .updated { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+    .rules {
+      display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px;
+    }
+    .rule-card {
+      background: var(--surface); border: 1px solid var(--line); padding: 20px; border-radius: 16px;
+    }
+    .rule-card .icon {
+      width: 32px; height: 32px; display: grid; place-items: center; margin-bottom: 12px;
+      border-radius: 9px; background: var(--cyan); color: var(--blue); font-weight: 800;
+    }
+    .rule-card h3 { margin: 0; font-size: 15px; }
+    .rule-card p { margin: 8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+    .panel {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .controls {
+      padding: 18px; border-bottom: 1px solid var(--line);
+      display: flex; justify-content: space-between; gap: 15px; align-items: center; flex-wrap: wrap;
+    }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter {
+      appearance: none; border: 1px solid #d6dde8; background: #fff; color: #40516a; border-radius: 999px;
+      padding: 8px 12px; font-size: 13px; cursor: pointer; transition: .18s ease;
+    }
+    .filter:hover { border-color: #a7c2e5; background: #f8fbff; }
+    .filter.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .search {
+      width: min(300px, 100%); position: relative;
+    }
+    .search input {
+      width: 100%; border: 1px solid #d6dde8; padding: 10px 12px 10px 34px; border-radius: 10px;
+      color: var(--text); font-size: 13px; outline: none;
+    }
+    .search input:focus { border-color: #5a91d3; box-shadow: 0 0 0 3px rgba(53,116,190,.12); }
+    .search::before { content: "⌕"; position: absolute; left: 11px; top: 5px; font-size: 21px; color: #7b8da7; }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; min-width: 1020px; border-collapse: collapse; }
+    th {
+      text-align: left; font-size: 12px; font-weight: 700; color: #52647e; background: #f8fafc;
+      border-bottom: 1px solid var(--line); padding: 13px 16px; white-space: nowrap;
+    }
+    td {
+      padding: 14px 16px; font-size: 13px; border-bottom: 1px solid #edf0f4; vertical-align: top;
+      color: #34435a; line-height: 1.45;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #fbfdff; }
+    .name { font-weight: 750; color: #15294b; }
+    .link {
+      display: inline-flex; align-items: center; gap: 5px; color: #145da9; text-decoration: none;
+      max-width: 220px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+    }
+    .link:hover { text-decoration: underline; }
+    .muted { color: #8a97a9; }
+    .badge {
+      display: inline-flex; align-items: center; white-space: nowrap; border-radius: 999px; padding: 5px 8px;
+      font-size: 11px; font-weight: 700;
+    }
+    .badge.cat-paid { background: #eaf3ff; color: #16589e; }
+    .badge.cat-trial { background: #f4ecff; color: #6d37a3; }
+    .badge.cat-free { background: #e9f8ef; color: #16794a; }
+    .badge.vpn { background: #fff4df; color: #9b6300; }
+    .badge.direct { background: #eef7f0; color: #287749; }
+    .badge.pending { background: #f2f4f7; color: #596a82; }
+    .empty { padding: 44px 20px; text-align: center; color: var(--muted); }
+
+    .foot-grid {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 14px;
+    }
+    .foot-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px;
+    }
+    .foot-card h3 { margin: 0; font-size: 16px; }
+    .foot-card p, .foot-card li { color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .foot-card ul { margin: 10px 0 0; padding-left: 18px; }
+
+    footer { margin-top: 48px; padding: 24px 0 8px; color: #7f8ca0; font-size: 12px; }
+    .footer-line { border-top: 1px solid #e2e8f0; padding-top: 18px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+
+    .knowledge-layout {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .concept-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 21px;
+    }
+    .concept-kicker {
+      display: inline-flex;
+      margin-bottom: 10px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #edf5ff;
+      color: #175da7;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    .concept-card h3 {
+      margin: 0;
+      color: #14294c;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+    .concept-card p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .definition-note {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-left: 4px solid #2d75c4;
+      border-radius: 0 14px 14px 0;
+      background: #f0f7ff;
+      color: #38536f;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .knowledge-block {
+      margin-top: 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+    .knowledge-block h3 {
+      margin: 0;
+      color: #14294c;
+      font-size: 18px;
+      letter-spacing: -.02em;
+    }
+    .knowledge-block > p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .protocol-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .protocol-card {
+      border: 1px solid #e1e8f1;
+      border-radius: 14px;
+      padding: 16px;
+      background: linear-gradient(180deg, #fbfdff, #f6f9fd);
+    }
+    .protocol-card h4 {
+      margin: 0;
+      font-size: 15px;
+      color: #17365d;
+    }
+    .protocol-card p {
+      margin: 8px 0 0;
+      color: #62738a;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .term-list {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .term-item {
+      border: 1px solid #e7ecf2;
+      border-radius: 12px;
+      padding: 14px 15px;
+      background: #fff;
+    }
+    .term-item h4 {
+      margin: 0;
+      font-size: 14px;
+      color: #233b61;
+    }
+    .term-item p {
+      margin: 7px 0 0;
+      font-size: 13px;
+      color: #66778e;
+      line-height: 1.6;
+    }
+    .faq-list {
+      margin-top: 15px;
+      display: grid;
+      gap: 9px;
+    }
+    details {
+      border: 1px solid #e5eaf1;
+      border-radius: 12px;
+      padding: 0 14px;
+      background: #fff;
+    }
+    summary {
+      padding: 13px 0;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: #27456f;
+    }
+    details p {
+      margin: 0 0 14px;
+      color: #63748c;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 820px) {
+      .summary-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .rules, .foot-grid, .knowledge-layout, .protocol-grid, .term-list { grid-template-columns: 1fr; }
+      .section-heading { align-items: flex-start; flex-direction: column; }
+      .updated { white-space: normal; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 26px, 1180px); }
+      header { padding-bottom: 46px; }
+      .topbar nav { gap: 12px; }
+      .stat { padding: 16px; }
+      .controls { align-items: stretch; }
+      .search { width: 100%; }
+    }
+  
+    /* 新手知识区 */
+    .guide-section { margin-top: 42px; }
+    .guide-reading-order {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 17px 0;
+    }
+    .guide-reading-order article {
+      min-height: 118px;
+      padding: 16px;
+      border: 1px solid #e1e9f3;
+      border-radius: 15px;
+      background: #fbfdff;
+    }
+    .guide-reading-order b {
+      display: block;
+      color: #143e79;
+      font-size: 24px;
+      letter-spacing: -.04em;
+    }
+    .guide-reading-order span {
+      display: block;
+      margin-top: 7px;
+      color: #64758c;
+      font-size: 13px;
+      line-height: 1.62;
+    }
+    .guide-alert {
+      margin: 17px 0;
+      padding: 15px 17px;
+      border: 1px solid #f1d491;
+      border-radius: 14px;
+      background: #fff7e4;
+      color: #6f4d00;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 14px;
+    }
+    .guide-card, .guide-panel {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+    }
+    .guide-card { padding: 20px; }
+    .guide-card > span {
+      display: inline-flex;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #edf5ff;
+      color: #175da7;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    .guide-card h3, .guide-panel h3 {
+      margin: 10px 0 0;
+      color: #17335e;
+      font-size: 17px;
+      letter-spacing: -.02em;
+    }
+    .guide-card p, .guide-panel > p {
+      margin: 9px 0 0;
+      color: #62748c;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+    .guide-note {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-left: 4px solid #2d75c4;
+      border-radius: 0 14px 14px 0;
+      background: #eff7ff;
+      color: #38536f;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .guide-panel {
+      margin-top: 16px;
+      padding: 21px;
+    }
+    .guide-terms, .guide-protocols {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .guide-terms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .guide-protocols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .guide-terms article, .guide-protocols article {
+      padding: 15px;
+      border: 1px solid #e3eaf3;
+      border-radius: 13px;
+      background: #fbfdff;
+    }
+    .guide-terms h4, .guide-protocols h4 {
+      margin: 0;
+      color: #24446e;
+      font-size: 14px;
+    }
+    .guide-terms p, .guide-protocols p {
+      margin: 7px 0 0;
+      color: #687a92;
+      font-size: 13px;
+      line-height: 1.64;
+    }
+    .guide-checklist {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .guide-checklist article {
+      min-height: 120px;
+      padding: 15px;
+      border: 1px solid #dbe9df;
+      border-radius: 14px;
+      background: #eaf8ef;
+    }
+    .guide-checklist b {
+      display: block;
+      color: #177345;
+      font-size: 14px;
+    }
+    .guide-checklist span {
+      display: block;
+      margin-top: 7px;
+      color: #4c6a59;
+      font-size: 12px;
+      line-height: 1.58;
+    }
+    .guide-table-wrap {
+      overflow-x: auto;
+      margin-top: 16px;
+      border: 1px solid #e4eaf2;
+      border-radius: 13px;
+    }
+    .guide-table { width: 100%; min-width: 720px; border-collapse: collapse; }
+    .guide-table th, .guide-table td {
+      padding: 13px 15px;
+      border-bottom: 1px solid #edf0f4;
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+      line-height: 1.62;
+    }
+    .guide-table th {
+      color: #53647c;
+      background: #f8fafc;
+      font-size: 12px;
+    }
+    .guide-table tr:last-child td { border-bottom: none; }
+    .guide-table td:first-child { color: #1d426f; font-weight: 750; white-space: nowrap; }
+    .guide-bottom {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 14px;
+    }
+    .guide-bottom .guide-panel { height: 100%; }
+    .guide-faq { display: grid; gap: 10px; margin-top: 15px; }
+    .guide-faq details {
+      padding: 0 15px;
+      border: 1px solid #e4eaf1;
+      border-radius: 13px;
+      background: #fff;
+    }
+    .guide-faq summary {
+      padding: 14px 0;
+      cursor: pointer;
+      color: #274a77;
+      font-size: 14px;
+      font-weight: 750;
+    }
+    .guide-faq details p {
+      margin: 0 0 15px;
+      color: #62748c;
+      font-size: 13px;
+      line-height: 1.72;
+    }
+    @media (max-width: 920px) {
+      .guide-reading-order, .guide-checklist { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .guide-grid, .guide-protocols { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 650px) {
+      .guide-reading-order, .guide-grid, .guide-terms, .guide-protocols, .guide-checklist, .guide-bottom { grid-template-columns: 1fr; }
+    }
+
+  
+    /* 已核验资料卡 */
+    .verified-card {
+      margin: 0 0 16px;
+      border: 1px solid #dce8f5;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #f9fcff, #f2f8ff);
+      overflow: hidden;
+    }
+    .verified-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 19px 20px 16px;
+      border-bottom: 1px solid #dce8f5;
+    }
+    .verified-kicker {
+      display: inline-flex;
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #e6f3ff;
+      color: #175da7;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .03em;
+    }
+    .verified-head h3 {
+      margin: 8px 0 0;
+      color: #17335e;
+      font-size: 20px;
+      letter-spacing: -.025em;
+    }
+    .verified-head p {
+      max-width: 660px;
+      margin: 7px 0 0;
+      color: #5f7189;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .verified-date {
+      white-space: nowrap;
+      color: #5f7189;
+      font-size: 12px;
+    }
+    .plan-summary {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      padding: 16px 20px;
+    }
+    .plan-stat {
+      padding: 13px;
+      border: 1px solid #dce8f5;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .plan-stat b {
+      display: block;
+      color: #12396d;
+      font-size: 18px;
+      letter-spacing: -.025em;
+    }
+    .plan-stat span {
+      display: block;
+      margin-top: 5px;
+      color: #6b7b90;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .plan-details {
+      padding: 0 20px 19px;
+    }
+    .plan-details summary {
+      cursor: pointer;
+      color: #235f9e;
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .plan-table-wrap {
+      overflow-x: auto;
+      margin-top: 13px;
+      border: 1px solid #dce8f5;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .plan-table {
+      width: 100%;
+      min-width: 650px;
+      border-collapse: collapse;
+    }
+    .plan-table th, .plan-table td {
+      padding: 11px 13px;
+      border-bottom: 1px solid #edf2f7;
+      text-align: left;
+      color: #3f536e;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .plan-table th {
+      color: #5b6c83;
+      background: #f8fbfe;
+      font-size: 11px;
+    }
+    .plan-table tr:last-child td { border-bottom: 0; }
+    .plan-table td:nth-child(2) { color: #12396d; font-weight: 800; white-space: nowrap; }
+    .verified-footnote {
+      padding: 0 20px 19px;
+      color: #718198;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    @media (max-width: 900px) {
+      .plan-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 550px) {
+      .verified-head { flex-direction: column; }
+      .plan-summary { grid-template-columns: 1fr; }
+    }
+.plan-card-intro {
+      margin: 10px 20px 0;
+      color: #64758c;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+    .plan-table td:last-child {
+      min-width: 260px;
+      color: #61728a;
+    }
+
+  
+    .vpn-rules {
+      margin: 0 20px 16px;
+      padding: 14px 15px;
+      border: 1px solid #dce8f5;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+    .vpn-rules h4 {
+      margin: 0;
+      color: #173963;
+      font-size: 13px;
+    }
+    .vpn-rules ul {
+      margin: 9px 0 0;
+      padding-left: 18px;
+      color: #61728a;
+    }
+    .vpn-rules li {
+      margin: 5px 0;
+      font-size: 12px;
+      line-height: 1.62;
+    }
+    .vpn-rules strong { color: #24446e; }
+
+  
+    .extra-link-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 20px 16px;
+      padding: 11px 13px;
+      border: 1px solid #dce8f5;
+      border-radius: 11px;
+      background: #fbfdff;
+      color: #6d7e95;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .extra-link-row a {
+      color: #1c5fa4;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .extra-link-row a:hover { text-decoration: underline; }
+
+  
+/* UI refresh: directory-first layout, compact detail cards, clearer hierarchy */
+:root {
+  --ink: #10243f;
+  --ink-soft: #294667;
+  --paper: #ffffff;
+  --paper-soft: #f7faff;
+  --canvas: #f3f7fc;
+  --accent: #2167b5;
+  --accent-strong: #124b8d;
+  --accent-soft: #e9f3ff;
+  --teal: #1f806a;
+  --line-strong: #d8e2ef;
+  --shadow-soft: 0 12px 30px rgba(19, 57, 101, .08);
+  --shadow-lift: 0 18px 42px rgba(19, 57, 101, .14);
+}
+
+html { scroll-padding-top: 20px; }
+body {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(70, 146, 235, .12), transparent 24rem),
+    radial-gradient(circle at 96% 30%, rgba(57, 169, 133, .10), transparent 22rem),
+    var(--canvas);
+}
+.wrap { width: min(1200px, calc(100% - 40px)); }
+
+header {
+  padding: 20px 0 66px;
+  background:
+    radial-gradient(circle at 93% -24%, rgba(113, 188, 255, .32), transparent 33rem),
+    linear-gradient(125deg, #0d2341 0%, #103c72 52%, #1668ad 100%);
+}
+header::after {
+  width: 470px;
+  height: 470px;
+  right: -190px;
+  top: -275px;
+  border-color: rgba(255,255,255,.16);
+}
+.topbar {
+  padding: 9px 12px 9px 16px;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 14px;
+  background: rgba(4, 24, 54, .22);
+  backdrop-filter: blur(12px);
+}
+.brand-mark {
+  border: 0;
+  background: linear-gradient(135deg, #63b3ff, #c6e4ff);
+  color: #103a6c;
+  box-shadow: 0 6px 16px rgba(22, 105, 190, .26);
+}
+.topbar nav { gap: 7px; }
+.topbar nav a {
+  padding: 7px 9px;
+  border-radius: 8px;
+  transition: background .18s ease, color .18s ease;
+}
+.topbar nav a:hover { background: rgba(255,255,255,.12); }
+
+.hero { padding-top: 65px; max-width: 920px; }
+.hero h1 { max-width: 800px; font-size: clamp(38px, 6.1vw, 64px); }
+.hero p { max-width: 720px; }
+.hero-meta { margin-top: 24px; }
+.meta-pill {
+  border: 1px solid rgba(201, 227, 255, .28);
+  background: rgba(255,255,255,.10);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .08);
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 43px;
+  padding: 0 16px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.hero-button:hover { transform: translateY(-2px); }
+.hero-button-primary {
+  color: #0d3971;
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .15);
+}
+.hero-button-secondary {
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.32);
+  background: rgba(255,255,255,.10);
+}
+
+.summary-grid { gap: 16px; }
+.stat {
+  position: relative;
+  overflow: hidden;
+  padding: 21px 20px;
+  border: 1px solid #e0e9f3;
+  box-shadow: var(--shadow-soft);
+}
+.stat::after {
+  content: "";
+  position: absolute;
+  inset: auto -18px -24px auto;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(85, 164, 248, .18), rgba(106, 208, 175, .08));
+}
+.stat .num { color: var(--accent-strong); }
+.notice {
+  border-color: #f2d694;
+  box-shadow: 0 7px 18px rgba(139, 94, 0, .06);
+}
+
+.quick-jump { margin-top: 16px; }
+.quick-jump-inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.quick-jump-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 17px;
+  border: 1px solid #dce8f5;
+  border-radius: 15px;
+  color: var(--ink);
+  text-decoration: none;
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 8px 18px rgba(31, 72, 118, .05);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.quick-jump-card:hover {
+  transform: translateY(-2px);
+  border-color: #9cc8f6;
+  box-shadow: var(--shadow-soft);
+}
+.quick-jump-num {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 9px;
+  color: #16589e;
+  background: #eaf4ff;
+  font-size: 12px;
+  font-weight: 850;
+}
+.quick-jump-text strong,
+.quick-jump-text small { display: block; }
+.quick-jump-text strong { color: #15395f; font-size: 14px; }
+.quick-jump-text small { margin-top: 3px; color: #73839a; font-size: 12px; }
+.quick-jump-arrow { color: #2469b0; font-size: 20px; }
+
+.section { margin-top: 54px; }
+.section-heading { margin-bottom: 18px; }
+.section-heading h2 { font-size: clamp(26px, 3vw, 34px); }
+.section-copy { max-width: 700px; }
+
+#directory {
+  scroll-margin-top: 18px;
+}
+#directory .panel {
+  border-color: #d7e5f3;
+  box-shadow: var(--shadow-lift);
+}
+.controls {
+  padding: 16px 18px;
+  background: linear-gradient(180deg, #fbfdff, #f7faff);
+}
+.filter {
+  border-color: #d7e2ef;
+  font-weight: 700;
+  transition: all .16s ease;
+}
+.filter:hover { transform: translateY(-1px); }
+.filter.active {
+  background: linear-gradient(135deg, #124a89, #2777c5);
+  border-color: #1e68b0;
+  box-shadow: 0 6px 12px rgba(33, 103, 181, .18);
+}
+.search input {
+  min-height: 40px;
+  border-radius: 12px;
+  background: #fff;
+}
+.table-scroll { background: #fff; }
+table { min-width: 760px; }
+th {
+  padding: 14px 16px;
+  color: #58708d;
+  background: #f5f8fc;
+}
+td { padding: 15px 16px; }
+tr:hover td { background: #f5f9ff; }
+.link {
+  padding: 7px 10px;
+  border: 1px solid #bad7f4;
+  border-radius: 9px;
+  color: #155ea8;
+  background: #eff7ff;
+  font-weight: 800;
+}
+.link:hover {
+  text-decoration: none;
+  border-color: #76afe6;
+  background: #e5f2ff;
+}
+.badge { padding: 6px 9px; }
+
+.detail-library {
+  margin-top: 24px;
+  scroll-margin-top: 18px;
+}
+.detail-library-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 34px 0 16px;
+}
+.detail-library-head h2 {
+  margin: 0;
+  color: #102f56;
+  font-size: clamp(24px, 3vw, 31px);
+  letter-spacing: -.035em;
+}
+.detail-library-head p {
+  max-width: 680px;
+  margin: 7px 0 0;
+  color: #6a7d95;
+  font-size: 14px;
+  line-height: 1.65;
+}
+.detail-library-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.small-action {
+  min-height: 35px;
+  padding: 0 12px;
+  border: 1px solid #1d65ad;
+  border-radius: 9px;
+  color: #fff;
+  background: #216bb7;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.small-action:hover { background: #15589d; }
+.small-action-muted {
+  color: #3e5c7e;
+  border-color: #cfdae7;
+  background: #fff;
+}
+.small-action-muted:hover { background: #f5f8fb; }
+
+.detail-library-grid { display: grid; gap: 12px; }
+.platform-detail {
+  margin: 0;
+  border: 1px solid #dbe7f4;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 7px 17px rgba(21, 67, 116, .05);
+  overflow: hidden;
+  transition: box-shadow .18s ease, border-color .18s ease;
+}
+.platform-detail[open] {
+  border-color: #a9ccf0;
+  box-shadow: var(--shadow-soft);
+}
+.platform-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 17px 19px;
+  cursor: pointer;
+  list-style: none;
+  background: linear-gradient(100deg, #fff 0%, #f7fbff 100%);
+}
+.platform-summary::-webkit-details-marker { display: none; }
+.platform-summary:hover { background: linear-gradient(100deg, #f9fcff 0%, #eef7ff 100%); }
+.platform-summary-main,
+.platform-summary-meta { min-width: 0; }
+.platform-summary-kicker,
+.platform-summary-title,
+.platform-summary-preview,
+.platform-summary-meta span { display: block; }
+.platform-summary-kicker {
+  margin-bottom: 5px;
+  color: #2775bd;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .03em;
+}
+.platform-summary-title {
+  color: #16385e;
+  font-size: 18px;
+  letter-spacing: -.02em;
+}
+.platform-summary-preview {
+  margin-top: 5px;
+  overflow: hidden;
+  color: #71839a;
+  font-size: 12px;
+  line-height: 1.55;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.platform-summary-meta {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+  color: #6f8096;
+  font-size: 12px;
+  text-align: right;
+}
+.platform-summary-open {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid #c9ddf1;
+  border-radius: 8px;
+  color: #2465a6;
+  background: #fff;
+  font-weight: 800;
+}
+.platform-summary-open::after { content: "⌄"; font-size: 16px; line-height: 10px; }
+.platform-detail[open] .platform-summary-open { color: #fff; border-color: #206db5; background: #216bb7; }
+.platform-detail[open] .platform-summary-open::after { content: "⌃"; }
+
+.platform-detail .verified-head { display: none; }
+.platform-detail .plan-card-intro {
+  margin: 0;
+  padding: 13px 20px 0;
+  color: #637991;
+}
+.platform-detail .plan-summary { padding: 14px 20px; }
+.platform-detail .plan-stat {
+  border-color: #dfeaf5;
+  background: #fbfdff;
+}
+.platform-detail .plan-stat b { color: #14569d; }
+.platform-detail .plan-details { padding-bottom: 17px; }
+.platform-detail .vpn-rules,
+.platform-detail .extra-link-row {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.platform-detail .verified-footnote {
+  padding-top: 0;
+}
+.platform-detail .plan-details > details {
+  border-color: #dce8f5;
+  background: #fff;
+}
+.platform-detail .plan-details > details > summary {
+  padding: 12px 13px;
+  color: #205f9f;
+  background: #f7fbff;
+}
+
+.rules .rule-card,
+.guide-card,
+.guide-panel,
+.concept-card,
+.foot-card {
+  box-shadow: 0 8px 20px rgba(26, 61, 101, .045);
+}
+.rules .rule-card,
+.guide-card,
+.guide-panel { transition: transform .18s ease, box-shadow .18s ease; }
+.rules .rule-card:hover,
+.guide-card:hover,
+.guide-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+.guide-alert,
+.guide-note,
+.definition-note { box-shadow: 0 6px 14px rgba(111, 77, 0, .05); }
+.guide-reading-order article {
+  border-color: #d8e7f6;
+  background: linear-gradient(180deg, #ffffff, #f7fbff);
+}
+.guide-reading-order b { color: #1e65ad; }
+.guide-checklist article {
+  border-color: #cfe8db;
+  background: linear-gradient(180deg, #f3fcf7, #e9f8ef);
+}
+.guide-panel h3,
+.guide-card h3 { color: #143b67; }
+
+.scroll-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #b8d4f0;
+  border-radius: 50%;
+  color: #fff;
+  background: linear-gradient(135deg, #1c61a9, #2d82d0);
+  box-shadow: 0 12px 26px rgba(28, 97, 169, .25);
+  font-size: 22px;
+  font-weight: 850;
+  text-decoration: none;
+}
+.scroll-top:hover { transform: translateY(-2px); }
+
+@media (max-width: 920px) {
+  .quick-jump-inner { grid-template-columns: 1fr; }
+  .detail-library-head { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 720px) {
+  .wrap { width: min(100% - 26px, 1200px); }
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .topbar nav { width: 100%; }
+  .hero { padding-top: 43px; }
+  .summary-grid { gap: 11px; }
+  .stat { padding: 16px; }
+  .platform-summary { gap: 12px; padding: 15px; }
+  .platform-summary-title { font-size: 16px; }
+  .platform-summary-preview { white-space: normal; }
+  .platform-summary-meta { align-items: flex-end; flex-direction: column; }
+  .platform-detail .plan-summary { padding: 12px 15px; }
+  .platform-detail .plan-card-intro,
+  .platform-detail .plan-details,
+  .platform-detail .verified-footnote { padding-left: 15px; padding-right: 15px; }
+  .platform-detail .vpn-rules,
+  .platform-detail .extra-link-row { margin-left: 15px; margin-right: 15px; }
+}
+@media (max-width: 480px) {
+  .hero-actions { width: 100%; }
+  .hero-button { flex: 1 1 100%; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat .num { font-size: 25px; }
+  .filters { gap: 6px; }
+  .filter { padding: 7px 9px; font-size: 12px; }
+  .platform-summary { grid-template-columns: 1fr; }
+  .platform-summary-meta { align-items: flex-start; text-align: left; }
+  .scroll-top { right: 14px; bottom: 14px; }
+}
+
+/* 资料跳转 */
+.detail-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 1px solid #b9d8f4;
+  border-radius: 9px;
+  color: #165fa9;
+  background: #eff7ff;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform .16s ease, border-color .16s ease, background .16s ease;
+}
+.detail-jump:hover {
+  transform: translateY(-1px);
+  border-color: #74afe7;
+  background: #e4f2ff;
+  text-decoration: none;
+}
+.platform-detail.detail-focus {
+  animation: detailFocus 1.8s ease-out;
+}
+@keyframes detailFocus {
+  0% { box-shadow: 0 0 0 0 rgba(33, 107, 183, .42), var(--shadow-soft); }
+  35% { box-shadow: 0 0 0 8px rgba(33, 107, 183, .16), var(--shadow-lift); }
+  100% { box-shadow: var(--shadow-soft); }
+}
+</style>
+</head>
+<body>
+<header id="top">
+<div class="wrap">
+<div class="topbar">
+<div class="brand"><span class="brand-mark">✓</span> 平台目录</div>
+<nav aria-label="页面导航">
+<a href="#knowledge">新手知识</a><a href="#plan-details">套餐资料</a>
+<a href="#directory">当前发布平台</a>
+<a href="#rules">收录规则</a>
+<a href="#maintenance">维护说明</a>
+</nav>
+</div>
+<div class="hero">
+<p class="eyebrow">PUBLIC INFORMATION DIRECTORY</p>
+<h1>机场 VPN 平台<br/>当前发布版与新手指南</h1>
+<p>本发布版保留完整的新手指南、规则、筛选界面与套餐资料卡；平台目录暂时只显示已替换为当前链接的条目。页面不做速度排名，不将第三方宣传视为事实结论。</p>
+<div class="hero-meta">
+<span class="meta-pill">当前展示：12 个平台</span>
+<span class="meta-pill">更新时间：2026-06-26</span>
+<span class="meta-pill">GitHub Pages 单文件版</span>
+</div><div class="hero-actions"><a class="hero-button hero-button-primary" href="#directory">查看平台目录</a><a class="hero-button hero-button-secondary" href="#knowledge">阅读新手指南</a></div>
+</div>
+</div>
+</header>
+<main class="wrap">
+<section aria-label="目录概览" class="summary-grid">
+<div class="stat"><div class="num">12</div><div class="label">当前发布平台</div></div>
+<div class="stat"><div class="num">11</div><div class="label">收费 / 订阅</div></div>
+<div class="stat"><div class="num">0</div><div class="label">免费 / 试用</div></div>
+<div class="stat"><div class="num">1</div><div class="label">免费 / 付费服务</div></div>
+</section>
+<section aria-label="目录说明" class="notice">
+<strong>当前发布范围：</strong>本页保留完整的新手知识、收录规则、筛选功能与已录入的套餐资料卡；平台目录当前展示已完成资料整理的 12 个条目。其余条目将在资料整理完成后再加入。套餐、价格、试用与功能可能变化，应以页面的最后核验日期和对应平台当前页面为准。
+    </section><section aria-label="快速导航" class="quick-jump"><div class="quick-jump-inner"><a class="quick-jump-card" href="#directory"><span class="quick-jump-num">01</span><span class="quick-jump-text"><strong>浏览目录</strong><small>先按类别筛选当前平台。</small></span><span class="quick-jump-arrow">→</span></a><a class="quick-jump-card" href="#plan-details"><span class="quick-jump-num">02</span><span class="quick-jump-text"><strong>查看套餐</strong><small>按需展开已录入资料。</small></span><span class="quick-jump-arrow">→</span></a><a class="quick-jump-card" href="#knowledge"><span class="quick-jump-num">03</span><span class="quick-jump-text"><strong>阅读指南</strong><small>先了解常见名词和检查方法。</small></span><span class="quick-jump-arrow">→</span></a></div></section><section class="section" id="directory">
+<div class="section-heading">
+<div>
+<h2>平台目录</h2>
+<p class="section-copy">当前公开整理的 12 个平台。可先按分类筛选，查看对应页面；需要套餐和规则时，点击“详细资料点链接”可直接跳到对应资料卡。</p>
+</div>
+<div aria-live="polite" class="updated" id="resultCount"></div>
+</div>
+<div class="panel">
+<div class="controls">
+<div aria-label="目录筛选" class="filters" role="group">
+<button class="filter active" data-filter="all">全部</button>
+<button class="filter" data-filter="paid">收费 / 订阅</button>
+<button class="filter" data-filter="free_trial">免费 / 试用</button>
+<button class="filter" data-filter="software">免费 / 付费服务</button>
+<button class="filter" data-filter="vpn">建议 VPN / 全局代理</button>
+<button class="filter" data-filter="direct">可先直连</button>
+</div>
+<label class="search">
+<input autocomplete="off" id="searchInput" placeholder="搜索平台名称或访问链接…" type="search"/>
+</label>
+</div>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>分类</th>
+<th>访问链接</th>
+<th>访问环境</th>
+<th>资料跳转</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
+<div class="empty" hidden="" id="emptyState">没有匹配的记录。</div>
+</div><section aria-label="套餐资料库" class="detail-library" id="plan-details"><div class="detail-library-head"><div><h2>套餐资料</h2><p>每个平台的套餐与公开说明默认收起。需要查看时展开对应卡片，减少页面长度和滚动负担。</p></div><div aria-label="套餐资料操作" class="detail-library-actions"><button class="small-action" data-expand-all="" type="button">展开全部</button><button class="small-action small-action-muted" data-collapse-all="" type="button">全部收起</button></div></div><div class="detail-library-grid"><details class="verified-card platform-detail" id="emo-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">EMO｜套餐信息</strong><span class="platform-summary-preview">以下为当前页面可见的套餐名称、标价与流量字段。价格与可购买状态可能变化；平台页面中的速度、节点或稳定性文案未作为独立结论。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-26</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>体验档适合先了解基础服务；月付、季付和年付主要区别是计费周期；页面标为“无限流量”的套餐仍应以平台规则为准。</p>
+<div aria-label="EMO 套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥3.00 / 月</b><span>当前页面最低月付</span></div>
+<div class="plan-stat"><b>¥6.00 / 月</b><span>当前页面最低常规月付</span></div>
+<div class="plan-stat"><b>¥15.00 / 季</b><span>当前页面最低季付</span></div>
+<div class="plan-stat"><b>¥55.00 / 年</b><span>当前页面最低年付</span></div>
+<div class="plan-stat"><b>¥799.99</b><span>当前页面的一次性套餐</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 12 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>月付 EMO 体验 10G</td><td>¥3.00</td><td>月付</td><td>10G</td><td>体验档，适合先查看后台和基本使用方式。</td></tr>
+<tr><td>月付 EMO 1000G（会员）</td><td>¥6.00</td><td>月付</td><td>1000G</td><td>会员月付档，页面归为会员套餐。</td></tr>
+<tr><td>月付 EMO 专享 200G</td><td>¥8.00</td><td>月付</td><td>200G</td><td>专享会员月付档，流量较少，适合轻度使用。</td></tr>
+<tr><td>月付 EMO 1000G（超级会员）</td><td>¥12.00</td><td>月付</td><td>1000G</td><td>超级会员月付档，页面归为更高等级套餐。</td></tr>
+<tr><td>月付 EMO 专享 20000G</td><td>¥19.99</td><td>月付</td><td>20000G</td><td>专享会员的大流量月付档。</td></tr>
+<tr><td>月付 EMO 无限流量（超级会员）</td><td>¥19.99</td><td>月付</td><td>页面标注“无限流量”</td><td>页面标为“无限流量”；具体限制以平台规则为准。</td></tr>
+<tr><td>季付 EMO 5000G（会员）</td><td>¥15.00</td><td>季付</td><td>5000G</td><td>会员季付档，按季度计费。</td></tr>
+<tr><td>季付 EMO 5000G（超级会员）</td><td>¥29.00</td><td>季付</td><td>5000G</td><td>超级会员季付档，按季度计费。</td></tr>
+<tr><td>月付 EMO 专享 10000G</td><td>¥49.00</td><td>月付</td><td>10000G</td><td>专享会员的大流量月付档。</td></tr>
+<tr><td>年付 EMO 20000G（会员）</td><td>¥55.00</td><td>年付</td><td>20000G</td><td>会员年付档，按年度计费。</td></tr>
+<tr><td>年付 EMO 20000G（超级会员）</td><td>¥76.66</td><td>年付</td><td>20000G</td><td>超级会员年付档，按年度计费。</td></tr>
+<tr><td>永久 EMO 无限流量（专享会员）</td><td>¥799.99</td><td>一次性</td><td>页面标注“无限流量”</td><td>一次性套餐；具体有效期和限制以规则为准。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="verified-footnote">
+    该卡片仅记录用户提供页面中可见的信息。套餐价格、名称和可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="yifen-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">一分机场｜套餐信息</strong><span class="platform-summary-preview">以下为当前页面可见的套餐名称、标价与流量字段。价格与可购买状态可能变化；页面中的节点、速度或稳定性文案未作为独立结论。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-26</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>月付套餐按页面说明为 30 天周期；“不限时”属于一次性流量包，不按月度自动重置。具体限制以当前页面规则为准。</p>
+<div aria-label="一分机场套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥2.00 / 月</b><span>当前页面最低月付</span></div>
+<div class="plan-stat"><b>¥6.00 / 月</b><span>当前页面 1000G 月付</span></div>
+<div class="plan-stat"><b>¥35.00 / 月</b><span>当前页面最高月付</span></div>
+<div class="plan-stat"><b>¥11.88</b><span>当前页面最低一次性套餐</span></div>
+<div class="plan-stat"><b>¥59.88</b><span>当前页面最高一次性套餐</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 7 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>100G 套餐</td><td>¥2.00</td><td>月付</td><td>100G</td><td>基础月付档，适合轻度或短期使用；页面说明按 30 天周期重置。</td></tr>
+<tr><td>1000G 套餐</td><td>¥6.00</td><td>月付</td><td>1000G</td><td>中档月付，适合一般流量需求；页面说明按 30 天周期重置。</td></tr>
+<tr><td>5000G 套餐</td><td>¥18.00</td><td>月付</td><td>5000G</td></tr>
+<tr><td>10000G 套餐</td><td>¥35.00</td><td>月付</td><td>10000G</td><td>高流量月付，适合更高流量需求；页面说明按 30 天周期重置。</td></tr>
+<tr><td>100G 不限时</td><td>¥11.88</td><td>一次性</td><td>100G</td><td>一次性流量包；页面标为“不限时”，不按月度自动重置。</td></tr>
+<tr><td>1000G 不限时</td><td>¥19.88</td><td>一次性</td><td>1000G</td><td>一次性流量包；页面标为“不限时”，不按月度自动重置。</td></tr>
+<tr><td>5000G 不限时</td><td>¥59.88</td><td>一次性</td><td>5000G</td><td>一次性流量包；页面标为“不限时”，不按月度自动重置。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="verified-footnote">
+    该卡片仅记录用户提供页面中可见的信息。套餐价格、名称和可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="365vpn-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">365VPN｜套餐与公开规则</strong><span class="platform-summary-preview">以下记录当前页面可见的套餐价格，以及官网公开的退款、设备、付款与使用规则。服务方宣传内容单独标注为公开说明，不作为独立性能结论。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>周卡、月卡、季卡、半年卡、年卡主要区别是计费周期；两年卡页面说明为“按两年订阅，额外赠送一年”。网页上的退款时长存在不同表述，付款前应再次确认。</p>
+<div aria-label="365VPN 套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥19.99 / 周</b><span>当前页面周卡</span></div>
+<div class="plan-stat"><b>¥39.99 / 月</b><span>当前页面月卡</span></div>
+<div class="plan-stat"><b>¥109.99 / 季</b><span>当前页面季卡</span></div>
+<div class="plan-stat"><b>¥365.99 / 年</b><span>官网价格页年卡</span></div>
+<div class="plan-stat"><b>¥739.99 / 3 年</b><span>两年订阅加赠一年</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 6 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>周卡</td><td>¥19.99</td><td>周付</td><td>未见固定流量字段</td><td>短周期套餐；官网首页说明周卡支持 3 天退款。</td></tr>
+<tr><td>月卡</td><td>¥39.99</td><td>月付</td><td>未见固定流量字段</td><td>标准月付价格；官方价格页同时显示首月 ¥29.99 的活动价。</td></tr>
+<tr><td>季卡</td><td>¥109.99</td><td>季付</td><td>未见固定流量字段</td><td>按季度计费的套餐。</td></tr>
+<tr><td>半年卡</td><td>¥209.99</td><td>半年付</td><td>未见固定流量字段</td><td>按半年计费的套餐。</td></tr>
+<tr><td>年卡</td><td>¥365.99</td><td>年付</td><td>未见固定流量字段</td><td>按年度计费；官方价格页列为 1 年方案。</td></tr>
+<tr><td>两年卡 + 赠一年</td><td>¥739.99</td><td>3 年</td><td>未见固定流量字段</td><td>页面说明按两年订阅并额外赠送一年。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的公开规则</h4>
+<ul>
+<li><strong>退款：</strong>官网首页写明 15 天无理由退款，周卡写明 3 天退款；价格页 FAQ 又称具体时长视套餐而定。</li>
+<li><strong>设备与客户端下载：</strong>网页列出 Windows、macOS、iOS、Android、Linux、OpenWrt，并在下载页列出 tvOS、Android TV；页面称支持多设备，但未看到明确数量。</li>
+<li><strong>付款：</strong>价格页列出银行卡、支付宝、微信支付、Google Pay、Apple Pay 和加密货币。</li>
+<li><strong>带宽规则：</strong>条款称长期高带宽使用可能被临时限速；持续异常使用可能导致暂停或终止服务。</li>
+<li><strong>隐私说明：</strong>隐私政策称不收集流量或浏览活动；服务条款同时称会记录访问尝试用于排障。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    平台页面有关于速度、服务器数量、加密和隐私的宣传，目录不把这些宣传当作独立验证结论。价格、规则和可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="ciyy-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">次元云｜套餐与页面说明</strong><span class="platform-summary-preview">以下为当前页面可见的活动、套餐价格和客户端范围。价格、活动、库存、节点数量和可购买状态可能变化；页面宣传不作为独立验证结论。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>页面将套餐分为“中杯”和“大杯”，并提供月付、季付、年付；另有一个 ¥99 年付活动套餐。套餐卡中的部分细节文字未清晰呈现，因此不把不确定字段写进表格。</p>
+<div aria-label="次元云套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥99.00 / 年</b><span>页面公告中的特惠年付</span></div>
+<div class="plan-stat"><b>¥17.00 / 月</b><span>中杯月付</span></div>
+<div class="plan-stat"><b>¥48.00 / 季</b><span>中杯季付</span></div>
+<div class="plan-stat"><b>¥187.00 / 年</b><span>中杯年付</span></div>
+<div class="plan-stat"><b>¥374.00 / 年</b><span>大杯年付</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 7 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>特惠年付套餐</td><td>¥99.00</td><td>年付</td><td>页面卡片有流量规格说明；当前不录入不清晰字段</td><td>页面活动区显示“年付套餐”；上方公告写原价 ¥158/年、现 ¥99/年。</td></tr>
+<tr><td>中杯 月付</td><td>¥17.00</td><td>月付</td><td>页面卡片有流量规格说明；当前不录入不清晰字段</td><td>中杯等级的月付套餐。</td></tr>
+<tr><td>中杯 季付</td><td>¥48.00</td><td>季付</td><td>页面卡片有流量规格说明；当前不录入不清晰字段</td><td>中杯等级的季付套餐。</td></tr>
+<tr><td>中杯 年付</td><td>¥187.00</td><td>年付</td><td>页面卡片有流量规格说明；当前不录入不清晰字段</td><td>中杯等级的年付套餐。</td></tr>
+<tr><td>大杯 月付</td><td>¥34.00</td><td>月付</td><td>页面卡片有流量规格说明；当前不录入不清晰字段</td><td>大杯等级的月付套餐。</td></tr>
+<tr><td>大杯 季付</td><td>¥97.00</td><td>季付</td><td>页面卡片有流量规格说明；当前不录入不清晰字段</td><td>大杯等级的季付套餐。</td></tr>
+<tr><td>大杯 年付</td><td>¥374.00</td><td>年付</td><td>页面卡片有流量规格说明；当前不录入不清晰字段</td><td>大杯等级的年付套餐。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>活动：</strong>页面公告显示 2026 活动中，特惠年付套餐从 ¥158/年调整为 ¥99/年。</li>
+<li><strong>线路与节点：</strong>页面自述支持 18+ 热门国家 / 40+ 节点；目录不将该描述视为独立验证。</li>
+<li><strong>客户端范围：</strong>页面列出 Windows、macOS、iOS、Android、Linux。</li>
+<li><strong>教程：</strong>页面提示新用户购买订阅后可查看教程使用。</li>
+<li><strong>联系与入口：</strong>页面提示保存网站地址和注册邮箱，并显示多个公开访问地址。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    页面含有关于流媒体支持、节点、线路和稳定性的宣传，目录不将其写成独立验证结论。价格、活动、规则与可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="peiqian-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">赔钱机场｜套餐与页面说明</strong><span class="platform-summary-preview">以下为当前页面可见的套餐名称、价格、流量和设备数量。价格、活动、库存、节点数量与可购买状态可能变化；页面宣传不作为独立验证结论。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>页面分为周期订阅、不限时类和企业定制。周期订阅按月计费；不限时类按页面标签记录，具体有效期和使用规则应以当前页面为准。</p>
+<div aria-label="赔钱机场套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥1.50 / 月</b><span>最低月付</span></div>
+<div class="plan-stat"><b>¥39.99 / 月</b><span>最高普通月付</span></div>
+<div class="plan-stat"><b>¥18.90 起</b><span>不限时类套餐</span></div>
+<div class="plan-stat"><b>¥280.00 / 月</b><span>企业套餐</span></div>
+<div class="plan-stat"><b>¥688.00</b><span>企业不限时类</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 11 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>一瓶盖可乐</td><td>¥1.50</td><td>月付</td><td>100GB / 月；最多 10 个设备</td><td>月付基础档；页面标注 100GB 流量与最多 10 个设备。</td></tr>
+<tr><td>中瓶可乐</td><td>¥2.99</td><td>月付</td><td>500GB / 月；最多 15 个设备</td><td>月付中档；页面标注 500GB 流量与最多 15 个设备。</td></tr>
+<tr><td>大瓶可乐</td><td>¥5.99</td><td>月付</td><td>1000GB / 月；最多 20 个设备</td><td>月付套餐；页面标注 1000GB 流量与最多 20 个设备。</td></tr>
+<tr><td>超大瓶可乐</td><td>¥12.99</td><td>月付</td><td>5000GB / 月；最多 30 个设备</td><td>大流量月付套餐；页面标注 5000GB 流量与最多 30 个设备。</td></tr>
+<tr><td>水桶可乐</td><td>¥39.99</td><td>月付</td><td>20000GB / 月；最多 40 个设备</td><td>高流量月付套餐；页面标注 20000GB 流量与最多 40 个设备。</td></tr>
+<tr><td>一会嗦一口（不限时类）</td><td>¥18.90</td><td>不限时</td><td>100GB；最多 10 个设备</td><td>页面归入不限时类；标注 100GB 与最多 10 个设备。</td></tr>
+<tr><td>一会嗦（不限时类）</td><td>¥68.90</td><td>不限时</td><td>7000GB；最多 20 个设备</td><td>页面归入不限时类；标注 7000GB 与最多 20 个设备。</td></tr>
+<tr><td>一大口（不限时类）</td><td>¥88.99</td><td>不限时</td><td>10000GB；最多 30 个设备</td><td>页面归入不限时类；标注 10000GB 与最多 30 个设备。</td></tr>
+<tr><td>至尊订阅（不限时类）</td><td>¥228.80</td><td>不限时</td><td>20000GB；最多 40 个设备</td><td>页面归入不限时类；标注 20000GB 与最多 40 个设备。</td></tr>
+<tr><td>企业套餐</td><td>¥280.00</td><td>月付</td><td>99999GB / 月；最多 300 个设备</td><td>企业定制分类中的月付套餐。</td></tr>
+<tr><td>顶级土豪套餐</td><td>¥688.00</td><td>不限时</td><td>99999GB；最多 300 个设备</td><td>企业定制分类中的不限时套餐。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>套餐分类：</strong>页面分为周期订阅、不限时类和企业定制。</li>
+<li><strong>设备数：</strong>页面按套餐标注最多 10、15、20、30、40 或 300 个设备。</li>
+<li><strong>流量规则：</strong>页面在多个套餐中标注 0.1 倍率低扣费福利下载节点。</li>
+<li><strong>服务范围：</strong>页面称支持多个国家或地区节点、流媒体与部分应用；目录不将这些称为独立验证结论。</li>
+<li><strong>线路说明：</strong>页面称提供不同网络运营商的优化线路；该描述不作为独立性能结论。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    页面含有关于速度、线路、解锁、加密和稳定性的宣传，目录不将其写成独立验证结论。价格、活动、库存、规则与可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="freecat-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">自由猫｜套餐与页面说明</strong><span class="platform-summary-preview">以下为当前页面可见的套餐、流量、设备数、端口速率标注和客户端限制。价格、库存、活动、节点数量与可购买状态可能变化；页面宣传不作为独立验证结论。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>页面提供月付套餐和“不限时”流量包。“不限时”按页面说明指流量耗尽前有效，不等于无限流量；页面同时明确提示不支持第三方客户端。</p>
+<div aria-label="自由猫套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥6.00 / 月</b><span>最低月付</span></div>
+<div class="plan-stat"><b>¥45.00 / 月</b><span>最高月付</span></div>
+<div class="plan-stat"><b>¥50.00 起</b><span>不限时流量包</span></div>
+<div class="plan-stat"><b>¥88.00</b><span>不限时 1TB</span></div>
+<div class="plan-stat"><b>¥338.00</b><span>不限时 5TB</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 8 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量与设备数</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>小仓鼠</td><td>¥6.00</td><td>月付</td><td>30GB / 月；1 台设备</td><td>基础月付套餐；页面标注 50Mbps 档位。</td></tr>
+<tr><td>流浪猫</td><td>¥9.00</td><td>月付</td><td>100GB / 月；3 台设备</td><td>月付套餐；页面标注 200Mbps、500Mbps 档位。</td></tr>
+<tr><td>囤囤猫</td><td>¥15.00</td><td>月付</td><td>200GB / 月；10 台设备</td><td>月付套餐；页面标注 200Mbps、500Mbps 档位。</td></tr>
+<tr><td>美短猫</td><td>¥25.00</td><td>月付</td><td>400GB / 月；10 台设备</td><td>月付套餐；页面标注 200Mbps、500Mbps 档位。</td></tr>
+<tr><td>布偶猫</td><td>¥45.00</td><td>月付</td><td>1000GB / 月；页面标注不限设备数</td><td>高流量月付套餐；页面标注 200Mbps、500Mbps 档位。</td></tr>
+<tr><td>不限时流量 500GB</td><td>¥50.00</td><td>不限时</td><td>500GB；10 台设备</td><td>一次性流量包；页面说明流量耗尽前有效，不限时间。</td></tr>
+<tr><td>不限时流量 1TB</td><td>¥88.00</td><td>不限时</td><td>1000GB；页面标注不限设备数</td><td>一次性流量包；页面标注 200Mbps、500Mbps、1000Mbps 档位。</td></tr>
+<tr><td>不限时流量 5TB</td><td>¥338.00</td><td>不限时</td><td>5000GB；页面标注不限设备数</td><td>一次性大流量包；页面标注 200Mbps、500Mbps、1000Mbps 档位。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>客户端限制：</strong>页面明确写明不支持第三方客户端。</li>
+<li><strong>套餐类型：</strong>页面同时提供月付套餐和不限时流量包；不限时类按页面说明为流量耗尽前有效。</li>
+<li><strong>使用限制：</strong>页面套餐说明中标注不允许分享、商用，仅限本人使用。</li>
+<li><strong>访问入口：</strong>页面展示多个访问地址，并提示保存网站地址与注册邮箱。</li>
+<li><strong>节点与服务范围：</strong>页面自述覆盖 50+ 国家和地区、110+ 节点，并含流媒体与应用支持说明；目录不将其写成独立验证结论。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    页面含有关于速度、线路、节点、解锁、加密和稳定性的宣传，目录不将其写成独立验证结论。价格、活动、库存、规则与可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="983433-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐已录入</span><strong class="platform-summary-title">鱼鱼｜套餐与页面说明</strong><span class="platform-summary-preview">页面侧栏显示“鱼鱼的超级机场”，用户确认平台名称为“鱼鱼”。以下为页面可见套餐与说明；价格、活动、可购买状态和具体规则可能变化。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>页面包含周年限定套餐、月付流量档和不限时 100G 流量包。周年轻享套餐的列表标题和套餐卡出现了不同流量字段，目录不自行推断，以页面当前规则为准。</p>
+<div aria-label="983433.xyz 套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥29 / 半年</b><span>周年轻享套餐</span></div>
+<div class="plan-stat"><b>¥49 / 年</b><span>周年旗舰套餐</span></div>
+<div class="plan-stat"><b>¥7.99 / 月</b><span>最低月付</span></div>
+<div class="plan-stat"><b>¥49.99 / 月</b><span>最高月付</span></div>
+<div class="plan-stat"><b>¥20 / 100GB</b><span>不限时流量包</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 7 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>周年轻享套餐</td><td>¥29</td><td>半年</td><td>卡片显示 64G / 月；列表标题显示 68GB</td><td>周年限定套餐；页面说明面向轻度日常使用，限时上架与限量发售。</td></tr>
+<tr><td>周年旗舰套餐</td><td>¥49</td><td>年付</td><td>128G / 月</td><td>周年限定套餐；页面说明适合长期和高频使用，限量开放。</td></tr>
+<tr><td>不限时 100G</td><td>¥20</td><td>不限时</td><td>100GB</td><td>页面标注可无限叠加；具体有效期和限制以当前页面为准。</td></tr>
+<tr><td>月付 128G</td><td>¥7.99</td><td>月付</td><td>128GB / 月</td><td>基础月付流量档。</td></tr>
+<tr><td>月付 256G</td><td>¥13.99</td><td>月付</td><td>256GB / 月</td><td>中等月付流量档。</td></tr>
+<tr><td>月付 512G</td><td>¥25.99</td><td>月付</td><td>512GB / 月</td><td>大流量月付档。</td></tr>
+<tr><td>月付 1024G</td><td>¥49.99</td><td>月付</td><td>1024GB / 月</td><td>高流量月付档。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>名称：</strong>页面侧栏显示“鱼鱼的超级机场”，本目录统一记录为“鱼鱼”。</li>
+<li><strong>周年轻享套餐：</strong>列表标题和套餐卡出现 68GB 与 64G/月两种字段，目录保留差异，未自行推断。</li>
+<li><strong>不限时 100G：</strong>页面标注可无限叠加；具体有效期、叠加规则和其他限制需以当前页面为准。</li>
+<li><strong>协议与隐私表述：</strong>页面自述使用 VLESS Encryption 与 Xhttp，并提到无审计、无使用限制和无日志；目录不将其写成独立验证结论。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    页面中的性能、稳定性、隐私和协议优势属于平台自述，目录不将其写成独立验证结论。价格、活动、库存和规则可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="nfsq-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐与规则已录入</span><strong class="platform-summary-title">农夫山泉｜套餐与页面说明</strong><span class="platform-summary-preview">以下为当前页面可见的套餐、流量、设备数量、客户端使用方式与服务说明。价格、库存、服务范围和可购买状态可能变化；页面宣传不作为独立验证结论。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>页面提供月付套餐和“不限时”流量包。“不限时”按页面分类记录，不等于无限流量；具体有效期、使用范围和限制以当前页面规则为准。</p>
+<div aria-label="农夫山泉套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥15.00 / 月</b><span>最低月付</span></div>
+<div class="plan-stat"><b>¥30.00 / 月</b><span>高速 400G 月付</span></div>
+<div class="plan-stat"><b>¥70.00 / 月</b><span>高速 1000G 月付</span></div>
+<div class="plan-stat"><b>¥45.00 起</b><span>不限时流量包</span></div>
+<div class="plan-stat"><b>¥210.00</b><span>高速 1000G 不限时</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 6 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量与设备数</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>高速 200G</td><td>¥15.00</td><td>月付</td><td>200GB / 月；页面标注不限在线设备</td><td>基础月付流量档；页面标注国际流媒体解锁、6 小时内客服回复和专属客户端登录。</td></tr>
+<tr><td>高速 400G</td><td>¥30.00</td><td>月付</td><td>400GB / 月；页面标注不限在线设备</td><td>中等月付流量档；页面标注国际流媒体解锁、6 小时内客服回复和专属客户端登录。</td></tr>
+<tr><td>高速 1000G</td><td>¥70.00</td><td>月付</td><td>1000GB / 月；页面标注不限在线设备</td><td>高流量月付档；页面标注国际流媒体解锁、6 小时内客服回复和专属客户端登录。</td></tr>
+<tr><td>高速 200G【不限时】</td><td>¥45.00</td><td>一次性</td><td>200GB；页面标注不限在线设备</td><td>一次性流量包；页面归为“不限时”类别，具体规则以当前页面为准。</td></tr>
+<tr><td>高速 400G【不限时】</td><td>¥90.00</td><td>一次性</td><td>400GB；页面标注不限在线设备</td><td>一次性流量包；页面归为“不限时”类别，具体规则以当前页面为准。</td></tr>
+<tr><td>高速 1000G【不限时】</td><td>¥210.00</td><td>一次性</td><td>1000GB；页面标注不限在线设备</td><td>一次性大流量包；页面归为“不限时”类别，具体规则以当前页面为准。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>套餐类型：</strong>页面将套餐分为按周期订阅与不限时流量包两类。</li>
+<li><strong>设备：</strong>页面标注在线设备不限；具体设备和账号使用规则以当前页面为准。</li>
+<li><strong>客户端：</strong>页面提示仅限专属客户端、一键登录无需配置，因此不将其描述为第三方客户端兼容。</li>
+<li><strong>客服：</strong>页面标注工单或客服 6 小时内回复，属于页面承诺，目录不作独立验证。</li>
+<li><strong>服务自述：</strong>页面标注国际流媒体解锁，属于平台自述，目录不作独立验证。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    页面含有关于速度、线路、解锁、服务质量和稳定性的宣传，目录不将其写成独立验证结论。价格、活动、库存、规则与可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="fwcloud-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">蜂窝云｜套餐与页面说明</strong><span class="platform-summary-preview">以下为当前页面可见的套餐名称、标价和部分流量字段。部分卡片文字不够清晰，目录只写入能够确认的内容；价格、周期、活动与可购买状态可能变化。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>页面提供 IEPI A、B、C 三档，并有按量计费、定制套餐和企业定制。IEPI 卡片提供多种周期选择，以下价格为当前页面默认显示值。</p>
+<div aria-label="蜂窝云套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥20.00 / 月</b><span>IEPI 套餐 C</span></div>
+<div class="plan-stat"><b>¥38.80 / 月</b><span>IEPI 套餐 B</span></div>
+<div class="plan-stat"><b>¥50.00 / 月</b><span>IEPI 套餐 A</span></div>
+<div class="plan-stat"><b>¥40.00</b><span>按量计费</span></div>
+<div class="plan-stat"><b>¥2300 起</b><span>定制 / 企业套餐</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 6 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>IEPI 套餐 C</td><td>¥20.00</td><td>月付（默认）</td><td>200GB</td><td>IEPI 系列基础档；页面显示 SVIP 会员、31 天与 200GB。</td></tr>
+<tr><td>IEPI 套餐 B</td><td>¥38.80</td><td>月付（默认）</td><td>500GB</td><td>IEPI 系列中档；页面显示 SVIP 会员、31 天与 500GB。</td></tr>
+<tr><td>IEPI 套餐 A</td><td>¥50.00</td><td>月付（默认）</td><td>1024GB</td><td>IEPI 系列高流量档；页面显示 SVIP 会员、31 天与 1024GB。</td></tr>
+<tr><td>按量计费</td><td>¥40.00</td><td>一次性</td><td>210GB</td><td>页面归为按量计费；卡片显示不限时会员与一次性 210GB。</td></tr>
+<tr><td>定制套餐</td><td>¥2300.00</td><td>按页面选择</td><td>不录入不清晰字段</td><td>定制类套餐；页面显示企业账户、定制线路等内容。</td></tr>
+<tr><td>企业定制</td><td>¥7800.00</td><td>按页面选择</td><td>不录入不清晰字段</td><td>企业定制类套餐；页面显示企业线路、TikTok 运营节点和独享中转等说明。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>周期选择：</strong>IEPI 套餐 A、B、C 提供月付、季付、半年与年付控件；当前仅记录默认展示标价。</li>
+<li><strong>按量计费：</strong>页面显示一次性 210GB 与不限时会员，具体有效期和使用规则以当前页面为准。</li>
+<li><strong>页面自述：</strong>包含小流媒体与 GPT 支持、60+ 节点、中转优化和 IEPI 专线等内容；目录不将其写成独立验证结论。</li>
+<li><strong>定制内容：</strong>定制套餐与企业定制显示企业账户、定制线路、TikTok 运营节点和独享中转等页面说明。</li>
+</ul>
+</div>
+<div class="extra-link-row">
+<a href="https://db.onl/0QMDn" rel="noopener noreferrer" target="_blank">附加入口 ↗</a>
+<span>用户提供的附加地址。</span>
+</div>
+<div class="verified-footnote">
+    页面关于线路、节点、速度和可解锁内容的描述属于平台自述，目录不将其写成独立验证结论。价格、活动、库存、规则与可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="m78-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">M78 星云｜套餐与页面说明</strong><span class="platform-summary-preview">以下为当前页面可见的套餐名称、价格、流量和部分服务说明。价格、周期、赠送内容、活动和可购买状态可能变化；页面宣传不作为独立验证结论。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>IEPI A、B、C 等按月付、季付、半年与年付提供周期选择。下面列出当前页面默认展示的月付价格；“不过期套餐”按页面归为一次性流量包。</p>
+<div aria-label="M78 星云套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥12.80 / 月</b><span>中级 150G</span></div>
+<div class="plan-stat"><b>¥22.80 / 月</b><span>超值 300G</span></div>
+<div class="plan-stat"><b>¥35.00 / 月</b><span>高级 500G</span></div>
+<div class="plan-stat"><b>¥69.90 / 月</b><span>顶级 1000G</span></div>
+<div class="plan-stat"><b>¥99.00</b><span>不过期 300G</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 6 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>中级套餐 150G</td><td>¥12.80</td><td>月付（默认）</td><td>150GB / 30 天</td><td>中级月付档；页面卡片提供月付、季付、半年与年付选择。</td></tr>
+<tr><td>超值套餐 300G</td><td>¥22.80</td><td>月付（默认）</td><td>300GB / 30 天</td><td>中档月付套餐；页面卡片提供多种周期选择。</td></tr>
+<tr><td>高级套餐 年付送迪士尼车位 500G</td><td>¥35.00</td><td>月付（默认）</td><td>500GB / 30 天</td><td>高级月付档；赠送说明按页面名称记录，具体规则以当前页面为准。</td></tr>
+<tr><td>高级套餐 年付送豪飞车位 650G</td><td>¥49.00</td><td>月付（默认）</td><td>650GB / 30 天</td><td>高级月付档；赠送说明按页面名称记录，具体规则以当前页面为准。</td></tr>
+<tr><td>顶级套餐 1000G</td><td>¥69.90</td><td>月付（默认）</td><td>1000GB / 30 天</td><td>高流量月付档；页面卡片提供多种周期选择。</td></tr>
+<tr><td>不过期套餐 300G</td><td>¥99.00</td><td>一次性</td><td>300GB</td><td>页面归为一次性套餐；名称为“不过期套餐”，具体有效期和使用规则以当前页面为准。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>周期选择：</strong>IEPI 套餐卡片显示月付、季付、半年与年付选择控件；当前仅记录默认展示标价。</li>
+<li><strong>页面自述：</strong>包括二网 BGP 入口、最高 2000Mbps、流媒体与应用支持、20+ 国家或地区节点等内容；目录不将其写成独立验证结论。</li>
+<li><strong>客户端范围：</strong>页面列出苹果、安卓、Apple TV、OpenWrt、Linux 等系统或客户端范围；具体兼容性以当前页面为准。</li>
+<li><strong>一次性套餐：</strong>不过期套餐页面标注 300GB 一次性流量与 200Mbps 档位，具体有效期和服务范围以当前页面为准。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    页面含有关于速度、节点、流媒体、应用支持和服务质量的宣传，目录不将其写成独立验证结论。价格、活动、库存、规则与可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="tutu-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">兔兔云｜套餐与页面说明</strong><span class="platform-summary-preview">以下为当前页面可见的套餐名称、价格与流量字段。不限时类卡片的周期字段与文字说明存在差异，因此按页面分类保留，不自行推断。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>页面分为周期计费与不限时类。周期计费按月显示；不限时类卡片说明为永久流量或每次购买、用完即止，因此应以当前页面实际规则为准。</p>
+<div aria-label="兔兔云套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥11.88 / 月</b><span>小量 140G</span></div>
+<div class="plan-stat"><b>¥23.88 / 月</b><span>中量 328G</span></div>
+<div class="plan-stat"><b>¥47.76 / 月</b><span>大量 680G</span></div>
+<div class="plan-stat"><b>¥93.60 / 月</b><span>超大量 1380G</span></div>
+<div class="plan-stat"><b>¥18.00 起</b><span>不限时类</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 8 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>小量</td><td>¥11.88</td><td>月付</td><td>140GB / 月</td><td>基础月付档；页面显示每月 140GB。</td></tr>
+<tr><td>中量</td><td>¥23.88</td><td>月付</td><td>328GB / 月</td><td>中等月付流量档；页面显示每月 328GB。</td></tr>
+<tr><td>大量</td><td>¥47.76</td><td>月付</td><td>680GB / 月</td><td>大流量月付档；页面显示每月 680GB。</td></tr>
+<tr><td>超大量</td><td>¥93.60</td><td>月付</td><td>1380GB / 月</td><td>更高流量月付档；页面显示每月 1380GB。</td></tr>
+<tr><td>超大量 PLUS+</td><td>¥177.60</td><td>月付</td><td>2888GB / 月</td><td>页面显示每月 2888GB 的高流量月付档。</td></tr>
+<tr><td>小量不限时</td><td>¥18.00</td><td>不限时类</td><td>页面说明为永久 60GB，用完即止</td><td>不限时类套餐；页面文字写“永久 60GB 流量，用完即止”。</td></tr>
+<tr><td>中量不限时</td><td>¥36.00</td><td>不限时类</td><td>页面说明为 140GB，用完即止</td><td>页面文字写“每次仅需 36 元”，并标注 140GB 用完即止。</td></tr>
+<tr><td>大量不限时</td><td>¥69.00</td><td>不限时类</td><td>页面说明为 288GB，用完即止</td><td>页面文字写“每次仅需 69 元”，并标注 288GB 用完即止。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>套餐分类：</strong>页面将套餐分为周期计费与一次性（不限时类）分类。</li>
+<li><strong>不限时类：</strong>价格附近存在月付字段，但卡片说明为永久流量、用完即止或每次购买；目录保留差异，不自行推断。</li>
+<li><strong>页面自述：</strong>包含流媒体与应用支持、全节点不限速、最高速率与全中转等内容；目录不将其写成独立验证结论。</li>
+<li><strong>线路说明：</strong>页面提及国内联关节点等描述，目录仅作为页面资料记录。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    页面含有关于速度、线路、节点、解锁、加密和稳定性的宣传，目录不将其写成独立验证结论。价格、活动、库存、规则与可购买状态可能变化，不构成推荐或购买建议。
+  </div>
+</details><details class="verified-card platform-detail" id="doriya-verified"><summary class="platform-summary"><span class="platform-summary-main"><span class="platform-summary-kicker">套餐资料已录入</span><strong class="platform-summary-title">DoriyaNetwork｜套餐与页面说明</strong><span class="platform-summary-preview">以下为当前页面可见的套餐名称、标价和月付周期。页面未显示其他明确字段，因此没有补写不确定内容；价格、库存和可购买状态可能变化。</span></span><span class="platform-summary-meta"><span>最后核验：2026-06-27</span><span class="platform-summary-open">展开</span></span></summary>
+<p class="plan-card-intro"><strong>怎么看：</strong>当前页面展示 4 个按月订阅套餐，主要差异为每月流量档位，从 100G 到 1024G。</p>
+<div aria-label="DoriyaNetwork 套餐摘要" class="plan-summary">
+<div class="plan-stat"><b>¥8 / 月</b><span>Meow Nano 100G</span></div>
+<div class="plan-stat"><b>¥15 / 月</b><span>Meow Standard 200G</span></div>
+<div class="plan-stat"><b>¥30 / 月</b><span>Meow Pro 400G</span></div>
+<div class="plan-stat"><b>¥75 / 月</b><span>Meow Ultra 1024G</span></div>
+<div class="plan-stat"><b>4 个套餐</b><span>当前页面可见</span></div>
+</div>
+<div class="plan-details">
+<details>
+<summary>展开查看当前页面可见的 4 个套餐</summary>
+<div class="plan-table-wrap">
+<table class="plan-table">
+<thead>
+<tr><th>套餐名称</th><th>价格</th><th>周期</th><th>页面可见流量说明</th><th>套餐介绍</th></tr>
+</thead>
+<tbody>
+<tr><td>Meow Nano 100G</td><td>¥8</td><td>月付</td><td>100GB / 月</td><td>基础月付套餐；页面名称包含 100G。</td></tr>
+<tr><td>Meow Standard 200G</td><td>¥15</td><td>月付</td><td>200GB / 月</td><td>中等月付套餐；页面名称包含 200G。</td></tr>
+<tr><td>Meow Pro 400G</td><td>¥30</td><td>月付</td><td>400GB / 月</td><td>大流量月付套餐；页面名称包含 400G。</td></tr>
+<tr><td>Meow Ultra 1024G</td><td>¥75</td><td>月付</td><td>1024GB / 月</td><td>高流量月付套餐；页面名称包含 1024G。</td></tr>
+</tbody>
+</table>
+</div>
+</details>
+</div>
+<div class="vpn-rules">
+<h4>可以录入的页面说明</h4>
+<ul>
+<li><strong>套餐类型：</strong>当前页面显示 4 个按月订阅套餐，按流量档位从 100G 到 1024G。</li>
+<li><strong>信息范围：</strong>页面页面资料未显示明确的设备数、退款、客户端或协议说明，因此目录不补写这些字段。</li>
+</ul>
+</div>
+<div class="verified-footnote">
+    本卡只记录页面可见的套餐与价格，不构成推荐或购买建议。价格、活动、库存和规则可能变化。
+  </div>
+</details></div></section>
+</section>
+<section class="section" id="rules">
+<div class="section-heading">
+<div>
+<h2>收录规则</h2>
+<p class="section-copy">结构上借鉴“通知、目录、维护记录”分层方式，但改成更便于筛选和后期维护的中性字段。</p>
+</div>
+</div>
+<div class="rules">
+<article class="rule-card">
+<div class="icon">01</div>
+<h3>名称完全相同才去重</h3>
+<p>名称不同的条目分别保留，并在后续通过来源、链接与备注补充关系信息。</p>
+</article>
+<article class="rule-card">
+<div class="icon">02</div>
+<h3>链接可替换</h3>
+<p>保留“当前入口”和“后期维护信息”两列。维护信息为空时，页面展示当前入口。</p>
+</article>
+<article class="rule-card">
+<div class="icon">03</div>
+<h3>不做主观性能排行</h3>
+<p>页面仅记录公开入口、访问说明、类别与维护状态；不宣称速度、稳定性或可用性优劣。</p>
+</article>
+</div>
+</section>
+<section class="section guide-section" id="knowledge">
+<div class="section-heading">
+<div>
+<h2>新手先看：不要急着点链接</h2>
+<p class="section-copy">这是帮助你读懂平台目录的入门说明。它不告诉你“谁最好用”，只解释常见名称、链接状态，以及查看资料时应注意什么。</p>
+</div>
+</div>
+<div aria-label="阅读顺序" class="guide-reading-order">
+<article><b>01</b><span>先看平台属于收费、免费、试用还是客户端服务。</span></article>
+<article><b>02</b><span>再看当前入口和链接状态，不要把页面能打开当成服务保证。</span></article>
+<article><b>03</b><span>确认自己的设备、客户端和协议是否兼容。</span></article>
+<article><b>04</b><span>最后看资料日期、公开规则和是否有维护信息。</span></article>
+</div>
+<div class="guide-alert">
+<strong>先说明：</strong>平台被收录，不代表一定稳定、安全、适合所有人，也不代表链接会一直有效。分类、价格、试用与功能都可能变化，应以平台当前公开页面和最后核验日期为准。
+  </div>
+<div class="guide-grid">
+<article class="guide-card">
+<span>一句话理解</span>
+<h3>什么是“机场”？</h3>
+<p>“机场”是中文网络里的非正式说法，通常指提供账号、节点、订阅链接和管理后台的一类服务。它不是统一技术标准，也不能代表服务质量或经营主体。</p>
+</article>
+<article class="guide-card">
+<span>一句话理解</span>
+<h3>什么是“节点”？</h3>
+<p>节点可以先理解成不同的连接出口。同一平台可能有多个地区和多个节点；节点名称通常只表示位置或标签，不能单独说明速度、稳定性或适合度。</p>
+</article>
+<article class="guide-card">
+<span>一句话理解</span>
+<h3>什么是“订阅”？</h3>
+<p>订阅通常是一条链接或一份配置。客户端读取订阅后，可以一次加载多条节点配置，不用逐个手动添加。不同平台可能设置更新、设备或有效期限制。</p>
+</article>
+</div>
+<div class="guide-note">
+<strong>新手只要先记住三件事：</strong>平台不等于一定可靠；网页能打开不等于服务一定可用；协议名字复杂，也不等于越新越好。先确认设备兼容性、公开规则和信息日期，再决定是否继续了解。
+  </div>
+<div class="guide-panel">
+<h3>VPN、代理、客户端和面板：不要全部混成一个词</h3>
+<div class="guide-terms">
+<article><h4>VPN</h4><p>可以理解为一类建立加密网络通道的技术或服务形态。不同 VPN 的服务方式、隐私政策和适用场景可能完全不同。</p></article>
+<article><h4>代理</h4><p>可以理解为“帮助转发网络请求”的方式。很多平台会通过代理节点提供服务，但具体实现与功能由不同服务方决定。</p></article>
+<article><h4>客户端</h4><p>就是手机或电脑上的应用程序，用来导入订阅、管理节点或登录服务。有的平台支持第三方客户端，有的只允许官方客户端。</p></article>
+<article><h4>面板</h4><p>一般指登录后的网页后台。通常可查看套餐、剩余流量、订单、公告、订阅链接、设备限制或工单入口。</p></article>
+</div>
+</div>
+<div class="guide-panel" id="protocols">
+<h3>协议是什么？新手只要看“支不支持”</h3>
+<p>协议可以先理解为客户端和服务端沟通时使用的规则。你不需要背原理；看到某个协议时，先确认自己的客户端和版本是否支持即可。</p>
+<div class="guide-protocols">
+<article><h4>Shadowsocks</h4><p>常见协议名称之一。很多客户端能够识别相关配置，但不同平台的实现和附加功能可能不同。</p></article>
+<article><h4>Trojan</h4><p>常见协议名称。看到它时不需要判断“高级不高级”，先看客户端是否支持、平台是否有公开说明。</p></article>
+<article><h4>VMess / VLESS</h4><p>这两个名字常一起出现，但不是同一个协议。是否能导入或使用，要看客户端和具体版本。</p></article>
+<article><h4>Hysteria2</h4><p>常被归入较新的协议或传输方案。关键仍是客户端是否支持，而不是协议名是否新。</p></article>
+<article><h4>AnyTLS</h4><p>较新的协议名称之一。能否使用取决于平台配置和客户端实现，不是只看介绍页的一句话。</p></article>
+<article><h4>xhttp</h4><p>可能与其他协议或传输方式一起出现。它不等于“更快”或“更稳定”，只是不同实现方式之一。</p></article>
+</div>
+</div>
+<div class="guide-panel">
+<h3>直连、中转、专线、倍率：这些标签怎么理解？</h3>
+<p>这些词多用于描述线路、资源或计费方式。不同平台的用法可能不完全一致，因此更适合把它们当作“待核验的描述字段”，而不是统一的好坏评分。</p>
+<div class="guide-terms">
+<article><h4>直连</h4><p>通常表示平台描述的一种网络路径。具体路径、覆盖地区和表现会随服务方配置变化，不能只看两个字下结论。</p></article>
+<article><h4>中转</h4><p>通常表示网络请求可能经过额外转发环节。它是一种结构描述，不是“更好”或“更差”的统一标准。</p></article>
+<article><h4>专线</h4><p>常出现于营销文案。不同服务对“专线”的定义、覆盖范围和计费方式可能不同，应以公开说明为准。</p></article>
+<article><h4>流量倍率</h4><p>可以理解为流量如何扣除。例如 0.5 倍可能表示实际传输 100 GB，只从套餐扣除 50 GB；它不直接代表速度或延迟。</p></article>
+</div>
+</div>
+<div class="guide-panel" id="checklist">
+<h3>第一次看平台，建议按这 5 步检查</h3>
+<div class="guide-checklist">
+<article><b>1. 看分类</b><span>收费、免费、试用、长期流量包或仅官方客户端，先分清它属于哪一类。</span></article>
+<article><b>2. 看链接</b><span>注意当前入口、是否短链接、是否跳转页，以及页面标注的访问状态。</span></article>
+<article><b>3. 看兼容性</b><span>确认手机、电脑或路由器是否支持平台要求的客户端与协议。</span></article>
+<article><b>4. 看规则</b><span>阅读公开套餐、设备限制、流量周期、退款与续费说明，避免只看宣传标题。</span></article>
+<article><b>5. 看日期</b><span>优先看最后核验日期。旧链接、旧套餐和旧试用信息可能已经失效。</span></article>
+</div>
+</div>
+<div class="guide-panel">
+<h3>目录里的状态标签怎么读</h3>
+<p>状态标签不是性能评分，而是用于说明这条资料目前处于什么信息状态。</p>
+<div class="guide-table-wrap">
+<table class="guide-table">
+<thead>
+<tr><th>标签</th><th>一般表示什么</th><th>不要把它理解成什么</th></tr>
+</thead>
+<tbody>
+<tr><td>可读取</td><td>某次检查中，网页内容可以被正常读取。</td><td>不代表注册、套餐、节点和实际服务都正常。</td></tr>
+<tr><td>需验证</td><td>页面出现验证码、滑块或人机验证。</td><td>不代表网站一定失效，也不代表一定安全。</td></tr>
+<tr><td>需 JavaScript</td><td>页面需要浏览器执行脚本才能显示主要内容。</td><td>不代表平台一定不可用，只表示静态检查有限。</td></tr>
+<tr><td>跳转页 / 短链接</td><td>当前链接会跳到其他页面，或尚未解析出最终页面。</td><td>不代表最终服务页已被独立核验。</td></tr>
+<tr><td>待复核</td><td>条目来自来源列表，但还没有完成独立整理或更新。</td><td>不代表推荐、背书或可长期使用。</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="guide-bottom">
+<article class="guide-panel">
+<h3>账号和链接安全：新手多做一步检查</h3>
+<p>目录中的链接只用于资料整理。打开任何页面前，建议确认域名是否与目录记录一致；遇到陌生短链接、跳转页或要求提交超出必要范围的信息时，先暂停并核对来源。</p>
+<p>不要在不熟悉的平台重复使用重要密码。涉及客户端时，优先使用可核验的官方发布渠道，并留意设备权限、更新来源和公开说明。</p>
+</article>
+<article class="guide-panel">
+<h3>套餐和付款前，至少确认这几件事</h3>
+<p>月付、季付、年付、按量和长期流量包的规则不同。“不限时”通常指流量不按固定周期清零，不等于不限流量；“不限设备”也可能仍有合理使用或登录限制。</p>
+<p>付款前应阅读公开价格、流量周期、设备限制、续费方式和退款说明。目录只记录资料，不替代平台自己的规则页面。</p>
+</article>
+</div>
+<div class="guide-panel" id="faq">
+<h3>新手最常问的问题</h3>
+<div class="guide-faq">
+<details><summary>网页能打开，是不是就说明平台没问题？</summary><p>不是。页面能打开，只能说明该地址在某次查看时有响应。注册、付款、套餐、节点、客户端和实际连接情况都可能另外变化。</p></details>
+<details><summary>协议名字越新，是不是就越好？</summary><p>不一定。对新手来说，更重要的是自己的客户端是否支持、平台是否把兼容性说明清楚、资料是否近期更新。</p></details>
+<details><summary>两个网站界面很像，是不是同一个团队？</summary><p>不能这样判断。很多网站会使用相似或相同的开源面板与模板。页面相似不等于经营主体、线路来源、服务规则或维护情况相同。</p></details>
+<details><summary>免费和试用是不是一定不能用？</summary><p>不一定。免费或试用只是收费方式与时间范围的描述，不是质量评价。它们的额度、规则和持续时间往往变化更快，因此更要关注公开说明和最后核验日期。</p></details>
+<details><summary>为什么要保留“最后核验日期”和“来源”？</summary><p>因为链接、套餐、试用、客户端支持和网站状态都可能变化。日期帮助读者判断资料新旧；来源帮助区分“来源页面写了什么”和“目录是否已独立复核”。</p></details>
+</div>
+</div>
+</section>
+<section class="section" id="maintenance">
+<div class="section-heading">
+<div>
+<h2>维护说明</h2>
+<p class="section-copy">建议把该页面作为仓库首页。完整数据已同时保存为 YAML；后续新增、维护信息或调整分类时，只需更新数据文件并重新生成页面即可。</p>
+</div>
+</div>
+<div class="foot-grid">
+<article class="foot-card">
+<h3>建议的后续字段</h3>
+<ul>
+<li>访问链接、公开套餐字段、服务方式与最后核验日期</li>
+<li>资料状态：已录入、待补充、待复核与最后核验日期</li>
+<li>注册状态、服务方式、月付最低档、试用信息、最后核验日期</li>
+<li>平台分类：收费、免费、试用、客户端型服务</li>
+</ul>
+</article>
+<article class="foot-card">
+<h3>发布边界</h3>
+<p>仅记录可公开获得的资料。涉及价格、试用、套餐、功能或政策的内容应标注日期并以对应平台的公开页面为准。</p>
+<p>平台页面、套餐与活动可能变化；建议持续维护最后核验日期和公开说明。</p>
+</article>
+</div>
+</section>
+<footer>
+<div class="footer-line">
+<span>机场 VPN 平台整合目录 · 当前发布 12 个平台</span>
+<span>套餐资料与公开说明持续整理中</span>
+</div>
+</footer>
+</main>
+<script>
+    const records = [{"id":"platform-001","name":"EMO","category_label":"免费 / 付费服务","group":"software","platform_url":"https://yyds.emovpn.top/#/register?code=4p0YPEOG","access_group":"direct","access_label":"可先直连尝试","status_label":"价格已录入 · 其余待复核","last_verified":"2026-06-26","detail_id":"emo-verified"},{"id":"platform-002","name":"次元云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://ciyy.one/#/register?code=s8hI2X3U","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐与规则已录入","last_verified":"2026-06-27","detail_id":"ciyy-verified"},{"id":"platform-003","name":"赔钱机场","category_label":"收费 / 订阅","group":"paid","platform_url":"https://xn--mes358aby2apfg.com/register?code=Oj8KFubU&cover=sfw","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐与规则已录入","last_verified":"2026-06-27","detail_id":"peiqian-verified"},{"id":"platform-004","name":"一分机场","category_label":"收费 / 订阅","group":"paid","platform_url":"https://xn--4gqx1hgtfdmt.com/#/register?code=xY9lJuLO","access_group":"vpn","access_label":"建议先使用 VPN / 全局代理","status_label":"价格已录入","last_verified":"2026-06-26","detail_id":"yifen-verified"},{"id":"platform-005","name":"自由猫","category_label":"收费 / 订阅","group":"paid","platform_url":"https://us.freecat.cloud/register?code=8EiTVFpt","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐与规则已录入","last_verified":"2026-06-27","detail_id":"freecat-verified"},{"id":"platform-006","name":"鱼鱼","category_label":"收费 / 订阅","group":"paid","platform_url":"https://983433.xyz/#/register?invite_code=z0dDB8E1","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐已录入","last_verified":"2026-06-27","detail_id":"983433-verified"},{"id":"platform-007","name":"农夫山泉","category_label":"收费 / 订阅","group":"paid","platform_url":"https://qqq.nfsqttt.com/#/register?code=yolbhWPF","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐与规则已录入","last_verified":"2026-06-27","detail_id":"nfsq-verified"},{"id":"platform-008","name":"蜂窝云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://api.fwcloud.life/auth/register?code=TNVRFR","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐已录入","last_verified":"2026-06-27","detail_id":"fwcloud-verified"},{"id":"platform-009","name":"M78 星云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://www.m78.at/#/register?code=9PpKvvuM","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐与规则已录入","last_verified":"2026-06-27","detail_id":"m78-verified"},{"id":"platform-010","name":"兔兔云","category_label":"收费 / 订阅","group":"paid","platform_url":"https://www.tutuyun.uk/auth/register?code=LnlfHKpn","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐与规则已录入","last_verified":"2026-06-27","detail_id":"tutu-verified"},{"id":"platform-011","name":"DoriyaNetwork","category_label":"收费 / 订阅","group":"paid","platform_url":"https://rtx.al/#/register?code=1gOGklqb","access_group":"direct","access_label":"可先直连尝试","status_label":"套餐已录入","last_verified":"2026-06-27","detail_id":"doriya-verified"},{"id":"platform-039","name":"365VPN","category_label":"收费服务","group":"paid","platform_url":"https://www.365tz96752.com/?r=BOC662","access_group":"direct","access_label":"可先直连尝试","status_label":"价格与规则已录入","last_verified":"2026-06-27","detail_id":"365vpn-verified"}];
+    const body = document.getElementById('tableBody');
+    const emptyState = document.getElementById('emptyState');
+    const resultCount = document.getElementById('resultCount');
+    const filters = Array.from(document.querySelectorAll('.filter'));
+    const searchInput = document.getElementById('searchInput');
+    let activeFilter = 'all';
+
+    const escapeHTML = (value) => String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+
+    const linkOrMuted = (url, label) => {
+      if (!url) return '<span class="muted">资料待补充</span>';
+      const safe = escapeHTML(url);
+      return `<a class="link" href="${safe}" target="_blank" rel="noopener noreferrer" title="${safe}">${escapeHTML(label)}</a>`;
+    };
+
+    function categoryClass(record) {
+      if (record.group === 'free_trial') return 'cat-free';
+      if (record.group === 'software') return 'cat-trial';
+      return 'cat-paid';
+    }
+
+    function matches(record, query) {
+      const q = query.trim().toLowerCase();
+      const filterMatch =
+        activeFilter === 'all' ||
+        record.group === activeFilter ||
+        record.access_group === activeFilter;
+      const text = [
+        record.name, record.category_label, record.platform_url, record.access_label
+      ].join(' ').toLowerCase();
+      return filterMatch && (!q || text.includes(q));
+    }
+
+    function render() {
+      const query = searchInput.value || '';
+      const visible = records.filter(record => matches(record, query));
+      body.innerHTML = visible.map(record => `
+        <tr>
+          <td><span class="name">${escapeHTML(record.name)}</span></td>
+          <td><span class="badge ${categoryClass(record)}">${escapeHTML(record.category_label)}</span></td>
+          <td>${record.platform_url
+            ? `<a class="link" href="${escapeHTML(record.platform_url)}" target="_blank" rel="noopener noreferrer">访问页面 ↗</a>`
+            : '<span class="muted">资料待补充</span>'}</td>
+          <td><span class="badge ${record.access_group}">${escapeHTML(record.access_label)}</span></td>
+          <td>
+            <a class="detail-jump" href="#${escapeHTML(record.detail_id)}" data-detail-target="${escapeHTML(record.detail_id)}">
+              详细资料点链接 <span aria-hidden="true">↓</span>
+            </a>
+          </td>
+        </tr>
+      `).join('');
+      emptyState.hidden = visible.length !== 0;
+      resultCount.textContent = `显示 ${visible.length} / ${records.length} 条`;
+    }
+
+    filters.forEach(button => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filter;
+        filters.forEach(item => item.classList.toggle('active', item === button));
+        render();
+      });
+    });
+    searchInput.addEventListener('input', render);
+    render();
+  </script>
+<a aria-label="返回页面顶部" class="scroll-top" href="#top">↑</a>
+<script>
+(() => {
+  const details = Array.from(document.querySelectorAll('.platform-detail'));
+  const expandAll = document.querySelector('[data-expand-all]');
+  const collapseAll = document.querySelector('[data-collapse-all]');
+
+  if (expandAll) {
+    expandAll.addEventListener('click', () => {
+      details.forEach(item => { item.open = true; });
+    });
+  }
+  if (collapseAll) {
+    collapseAll.addEventListener('click', () => {
+      details.forEach(item => { item.open = false; });
+      document.getElementById('plan-details')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+})();
+</script>
+
+<script>
+(() => {
+  document.addEventListener('click', (event) => {
+    const jump = event.target.closest('.detail-jump[data-detail-target]');
+    if (!jump) return;
+
+    const targetId = jump.dataset.detailTarget;
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    target.open = true;
+    target.classList.remove('detail-focus');
+    void target.offsetWidth;
+    target.classList.add('detail-focus');
+
+    const top = target.getBoundingClientRect().top + window.scrollY - 18;
+    window.scrollTo({ top, behavior: 'smooth' });
+
+    history.replaceState(null, '', `#${targetId}`);
+  });
+})();
+</script>
+</body>
+</html>
